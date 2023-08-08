@@ -1,4 +1,4 @@
 # This file is used internally by FFMPEG.
-file 'file:/Users/devaldeliwala/Desktop/project/media/videos/scene/480p15/partial_movie_files/SquareToCircle/4266129954_3791751766_223132457.mp4'
-file 'file:/Users/devaldeliwala/Desktop/project/media/videos/scene/480p15/partial_movie_files/SquareToCircle/1442284246_2088213511_247722528.mp4'
-file 'file:/Users/devaldeliwala/Desktop/project/media/videos/scene/480p15/partial_movie_files/SquareToCircle/1442284246_2363910719_247722528.mp4'
+file 'file:/Users/devaldeliwala/Desktop/learning_manim/media/videos/scene/480p15/partial_movie_files/SquareToCircle/4266129954_3791751766_223132457.mp4'
+file 'file:/Users/devaldeliwala/Desktop/learning_manim/media/videos/scene/480p15/partial_movie_files/SquareToCircle/1442284246_2088213511_247722528.mp4'
+file 'file:/Users/devaldeliwala/Desktop/learning_manim/media/videos/scene/480p15/partial_movie_files/SquareToCircle/1442284246_2363910719_247722528.mp4'
