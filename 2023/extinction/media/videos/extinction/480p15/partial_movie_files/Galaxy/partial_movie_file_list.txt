@@ -1,0 +1,5 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/devaldeliwala/Desktop/manim/media/videos/extinction/480p15/partial_movie_files/Galaxy/3424385790_844194870_1969239702.mp4'
+file 'file:/Users/devaldeliwala/Desktop/manim/media/videos/extinction/480p15/partial_movie_files/Galaxy/1892038805_3592230712_819651380.mp4'
+file 'file:/Users/devaldeliwala/Desktop/manim/media/videos/extinction/480p15/partial_movie_files/Galaxy/2777831117_795458434_2454507989.mp4'
+file 'file:/Users/devaldeliwala/Desktop/manim/media/videos/extinction/480p15/partial_movie_files/Galaxy/286304720_2743881491_167277516.mp4'
