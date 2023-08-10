@@ -1,5 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/Users/devaldeliwala/Desktop/learning_manim/media/videos/3_dimensions/480p15/partial_movie_files/ParametricCurve3d/625751369_1445697852_3523998703.mp4'
-file 'file:/Users/devaldeliwala/Desktop/learning_manim/media/videos/3_dimensions/480p15/partial_movie_files/ParametricCurve3d/1215375594_653165941_3499329971.mp4'
-file 'file:/Users/devaldeliwala/Desktop/learning_manim/media/videos/3_dimensions/480p15/partial_movie_files/ParametricCurve3d/2202184317_1584370288_511033843.mp4'
-file 'file:/Users/devaldeliwala/Desktop/learning_manim/media/videos/3_dimensions/480p15/partial_movie_files/ParametricCurve3d/3879210844_653165941_897350660.mp4'

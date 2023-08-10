@@ -1,8 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/Users/devaldeliwala/Desktop/learning_manim/media/videos/revolutions/480p15/partial_movie_files/ValueTrackerExample/4266129954_345352296_164826033.mp4'
-file 'file:/Users/devaldeliwala/Desktop/learning_manim/media/videos/revolutions/480p15/partial_movie_files/ValueTrackerExample/1442284246_645682970_776698885.mp4'
-file 'file:/Users/devaldeliwala/Desktop/learning_manim/media/videos/revolutions/480p15/partial_movie_files/ValueTrackerExample/1442284246_987613892_2449006257.mp4'
-file 'file:/Users/devaldeliwala/Desktop/learning_manim/media/videos/revolutions/480p15/partial_movie_files/ValueTrackerExample/1442284246_645682970_2603801289.mp4'
-file 'file:/Users/devaldeliwala/Desktop/learning_manim/media/videos/revolutions/480p15/partial_movie_files/ValueTrackerExample/1442284246_1316803376_660991758.mp4'
-file 'file:/Users/devaldeliwala/Desktop/learning_manim/media/videos/revolutions/480p15/partial_movie_files/ValueTrackerExample/1442284246_3133409445_3391111827.mp4'
-file 'file:/Users/devaldeliwala/Desktop/learning_manim/media/videos/revolutions/480p15/partial_movie_files/ValueTrackerExample/1442284246_645682970_3682471714.mp4'
