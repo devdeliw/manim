@@ -1,1 +1,1 @@
-#### just a repo for learning manim
+Repository for all Manim uploads
