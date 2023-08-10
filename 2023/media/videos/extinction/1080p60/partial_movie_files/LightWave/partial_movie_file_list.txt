@@ -1,0 +1,2 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/devaldeliwala/Desktop/manim/2023/media/videos/extinction/1080p60/partial_movie_files/LightWave/3908638581_979627551_1969239702.mp4'
