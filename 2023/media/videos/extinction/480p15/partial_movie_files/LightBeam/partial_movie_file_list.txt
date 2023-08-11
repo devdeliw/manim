@@ -1,2 +1,5 @@
 # This file is used internally by FFMPEG.
-file 'file:/Users/devaldeliwala/Desktop/manim/media/videos/extinction/480p15/partial_movie_files/LightBeam/uncached_00000.mp4'
+file 'file:/Users/devaldeliwala/Desktop/manim/2023/media/videos/extinction/480p15/partial_movie_files/LightBeam/4266129954_1636166871_3138488842.mp4'
+file 'file:/Users/devaldeliwala/Desktop/manim/2023/media/videos/extinction/480p15/partial_movie_files/LightBeam/408678785_470562244_1867984433.mp4'
+file 'file:/Users/devaldeliwala/Desktop/manim/2023/media/videos/extinction/480p15/partial_movie_files/LightBeam/408678785_3267672122_2463661984.mp4'
+file 'file:/Users/devaldeliwala/Desktop/manim/2023/media/videos/extinction/480p15/partial_movie_files/LightBeam/408678785_1076466279_3547520947.mp4'

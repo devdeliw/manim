@@ -27,13 +27,16 @@ class Galaxy(ThreeDScene):
                   run_time = 10
         )
 
+        black_hole = ImageMobject("~/Desktop/manim/2023/media/images/blackhole.png")
+        black_hole.scale(0.1)
     
-        self.play(stream_lines.animate.scale(2))
+        self.play(stream_lines.animate.scale(8), FadeIn(black_hole))
         self.wait()
-
 
         group = VGroup(stream_lines)
         self.play(FadeOut(group), run_time = 2)
+
+        self.play(FadeOut(black_hole))
 
         self.stop_ambient_camera_rotation()
 
@@ -55,10 +58,16 @@ class LightBeam(Scene):
                                      time_width = 0.8,
                                      rate_func = rate_functions.ease_in_cubic
         )
-
         self.wait(5)
-        light_stream.end_animation()
 
+        earth = ImageMobject("~/Desktop/manim/2023/media/images/earth.png")
+        earth.scale(0.005 )
+        self.play(earth.animate.scale(35), run_time = 4)
+
+
+        self.play(FadeOut(light_stream), FadeOut(earth))
+
+        self.wait(1)
 
 class LightWave(ThreeDScene):
     def construct(self):
@@ -70,7 +79,7 @@ class LightWave(ThreeDScene):
             x_length = 5, 
             y_length = 5, 
             z_length = 5
-        )
+        ) 
 
         self.set_camera_orientation(
             phi = 80*DEGREES,
@@ -78,10 +87,10 @@ class LightWave(ThreeDScene):
             distance = 3
         )
         
-        self.begin_ambient_camera_rotation(rate = 0.05)
+        self.begin_ambient_camera_rotation(rate = 0.08)
 
         electric_field = ParametricFunction(
-            lambda t: np.array([t, np.sin(t), 0]),
+            lambda t: np.array([t, 0.3*np.sin(t), 0]),
             color = PURE_RED, 
             t_range = [0, 3*PI])
     
@@ -93,7 +102,7 @@ class LightWave(ThreeDScene):
         )
 
         magnetic_field = ParametricFunction(
-            lambda t: np.array([t, 0, np.sin(t)]),
+            lambda t: np.array([t, 0, 0.3*np.sin(t)]),
             color = DARK_BLUE, 
             t_range = [0, 3*PI])
 
@@ -121,7 +130,11 @@ class LightWave(ThreeDScene):
                   Write(e_area),
                   Write(m_area),
                   stream_lines.create(),
-                  run_time = 8
+                  run_time = 10
         )
 
+
+        self.wait(3)
+
+        self.stop_ambient_camera_rotation()
 
