@@ -1,0 +1,4 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/devaldeliwala/manim/2023/media/videos/extinction/1080p60/partial_movie_files/Scattering/3428277752_22743503_729892282.mp4'
+file 'file:/Users/devaldeliwala/manim/2023/media/videos/extinction/1080p60/partial_movie_files/Scattering/685970297_2099080036_930546208.mp4'
+file 'file:/Users/devaldeliwala/manim/2023/media/videos/extinction/1080p60/partial_movie_files/Scattering/2880362498_3603967229_4286002461.mp4'

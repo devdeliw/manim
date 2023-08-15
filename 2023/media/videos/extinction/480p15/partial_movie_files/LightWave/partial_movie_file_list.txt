@@ -1,3 +1,4 @@
 # This file is used internally by FFMPEG.
-file 'file:/Users/devaldeliwala/Desktop/manim/2023/media/videos/extinction/480p15/partial_movie_files/LightWave/998150875_95997512_1969239702.mp4'
-file 'file:/Users/devaldeliwala/Desktop/manim/2023/media/videos/extinction/480p15/partial_movie_files/LightWave/3577093823_795458434_1624740111.mp4'
+file 'file:/Users/devaldeliwala/manim/2023/media/videos/extinction/480p15/partial_movie_files/LightWave/4003977594_3557550077_1969239702.mp4'
+file 'file:/Users/devaldeliwala/manim/2023/media/videos/extinction/480p15/partial_movie_files/LightWave/2376889401_1932961374_1251834861.mp4'
+file 'file:/Users/devaldeliwala/manim/2023/media/videos/extinction/480p15/partial_movie_files/LightWave/3415405281_176490554_167277516.mp4'
