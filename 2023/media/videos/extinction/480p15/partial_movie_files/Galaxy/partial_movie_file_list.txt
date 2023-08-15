@@ -1,7 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/Users/devaldeliwala/Desktop/manim/2023/media/videos/extinction/480p15/partial_movie_files/Galaxy/3424385790_2915341015_1969239702.mp4'
-file 'file:/Users/devaldeliwala/Desktop/manim/2023/media/videos/extinction/480p15/partial_movie_files/Galaxy/627296415_3723362204_3940553749.mp4'
-file 'file:/Users/devaldeliwala/Desktop/manim/2023/media/videos/extinction/480p15/partial_movie_files/Galaxy/4030179015_653165941_630971817.mp4'
-file 'file:/Users/devaldeliwala/Desktop/manim/2023/media/videos/extinction/480p15/partial_movie_files/Galaxy/48849229_1801133681_3184272032.mp4'
-file 'file:/Users/devaldeliwala/Desktop/manim/2023/media/videos/extinction/480p15/partial_movie_files/Galaxy/1225916427_653165941_850232792.mp4'
-file 'file:/Users/devaldeliwala/Desktop/manim/2023/media/videos/extinction/480p15/partial_movie_files/Galaxy/2820234600_1826159042_3061164017.mp4'
