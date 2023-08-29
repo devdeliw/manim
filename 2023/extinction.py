@@ -201,7 +201,7 @@ class Sunset(Scene):
 
         stream_lines = StreamLines(lambda p: p/3,
                                    colors = [RED, ORANGE, BLUE, PURPLE],
-                                   stroke_width = 5
+                                   stroke_width = 20
         )
 
         sun = Circle(radius = 1, color = YELLOW, fill_opacity = 1)
@@ -215,7 +215,7 @@ class Sunset(Scene):
         self.play(FadeIn(sun), run_time = 2)
         self.add(stream_lines)
         stream_lines.start_animation(warm_up = True,
-                                     flow_speed = 1,
+                                     flow_speed = 3,
                                      time_width = 0.4,
                                      rate_func = rate_functions.ease_in_cubic
         )
