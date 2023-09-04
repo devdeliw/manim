@@ -1,0 +1,5 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/ComputationalBasis/4266129954_3268752119_223132457.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/ComputationalBasis/1442284246_4288459976_1537351356.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/ComputationalBasis/1442284246_329969645_3812138448.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/ComputationalBasis/1442284246_2298936525_230770454.mp4'

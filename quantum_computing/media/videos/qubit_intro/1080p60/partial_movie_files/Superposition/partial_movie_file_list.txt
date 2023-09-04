@@ -1,0 +1,10 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/1080p60/partial_movie_files/Superposition/2902699114_3426400757_223132457.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/1080p60/partial_movie_files/Superposition/3931933789_1241297778_3812511509.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/1080p60/partial_movie_files/Superposition/3931933789_3504365990_223132457.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/1080p60/partial_movie_files/Superposition/3931933789_4221910274_958252430.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/1080p60/partial_movie_files/Superposition/3931933789_3096963056_3665016429.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/1080p60/partial_movie_files/Superposition/3931933789_329969645_2727922293.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/1080p60/partial_movie_files/Superposition/3931933789_1021238748_3490967526.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/1080p60/partial_movie_files/Superposition/3931933789_1496265828_3052549816.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/1080p60/partial_movie_files/Superposition/3931933789_2644507468_2254654806.mp4'

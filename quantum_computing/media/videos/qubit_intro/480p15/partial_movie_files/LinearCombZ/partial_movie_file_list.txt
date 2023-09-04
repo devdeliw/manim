@@ -1,0 +1,3 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/LinearCombZ/4266129954_3220185771_1940755203.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/LinearCombZ/1442284246_973703874_4003663894.mp4'
