@@ -111,12 +111,49 @@ class Superposition(VectorScene):
         vector1 = self.add_vector([-2, 3], color = BLUE_B)
         label1 = self.write_vector_coordinates(vector1)
         self.wait()
+        self.play(FadeOut(label1))
 
         vector2 = Vector([4, -3], color = BLUE_B)
-        label2 = self.play(ReplacementTransform(vector1, vector2), run_time = 2)
-        self.write_vector_coordinates(vector2)
+        self.play(ReplacementTransform(vector1, vector2), run_time = 2)
+        label2 = self.write_vector_coordinates(vector2)
+        self.wait()
+        self.play(FadeOut(label2))
+
+        vector1 = self.add_vector([-2, 3], color = BLUE_B)
+        vector3 = Vector([3, -4], color = PURPLE_B)
+        vector4 = Vector([-3, -1], color = PURPLE_B)
+        vector5 = Vector([3, 1], color = MAROON_B)
+        vector6 = Vector([-4, -2], color = MAROON_B)
+        vector7 = Vector([3, 1], color = RED_B)
+        vector8 = Vector([1, -3], color = RED_B)
+        vector9 = Vector([-3, 4], color = GREEN_B)
+        vector10 = Vector([4, -3], color = GREEN_B)
+        vector11 = Vector([1, 1], color = YELLOW_B)
+        vector12 = Vector([-1, -2], color = YELLOW_B)
+
+
+        self.play(ReplacementTransform(vector2, vector3), 
+                  ReplacementTransform(vector1, vector4), 
+                  run_time = 1
+        )
+        self.play(ReplacementTransform(vector3, vector5), 
+                  ReplacementTransform(vector4, vector6), 
+                  run_time = 1
+        )
+        self.play(ReplacementTransform(vector5, vector7),
+                  ReplacementTransform(vector6, vector8),
+                  run_time = 1
+        )
+        self.play(ReplacementTransform(vector7, vector9),
+                  ReplacementTransform(vector8, vector10),
+                  run_time = 1
+        )
+        self.play(ReplacementTransform(vector9, vector11),
+                  ReplacementTransform(vector10, vector12),
+                  run_time = 1
+        )
     
-        self.play(FadeOut(numberplane), FadeOut(vector2), run_time = 2)
+        self.play(FadeOut(numberplane), FadeOut(vector11), FadeOut(vector12), run_time = 2)
 
 class LinearCombQNOT(LinearTransformationScene): 
     def __init__(self): 
@@ -144,7 +181,7 @@ class LinearCombQNOT(LinearTransformationScene):
 
 class ComputationalBasis(Scene):
     def construct(self):
-        vector_space = Tex(r"$ | \psi \rangle$ forms vector space spanned by $| 0 \rangle$, $ | 1 \rangle $")
+        vector_space = Tex(r"$ | \psi \rangle$ forms a vector space spanned by $| 0 \rangle$, $ | 1 \rangle $")
         basis = Tex(r"$|0\rangle$, $|1\rangle$ form the \textit{computational basis}").shift(1*DOWN)
 
         self.play(Write(vector_space))
@@ -182,7 +219,7 @@ class BasicQM(Scene):
 
         psi = Tex(r" Qubits allow for linear combinations of 0, 1 states, known as superpositions $$ | \psi \rangle = \alpha | 0 \rangle + \beta | 1 \rangle$$").scale(0.7).move_to([0,2,0])
 
-        qubit_collapse = Tex(r" Examining these Qubits yields $ | 0 \rangle $ with probability $ | \alpha |^2 $, or $ |1 \rangle$ with probability $|\beta|^2$.").scale(0.6).move_to([0,0.5,0])
+        qubit_collapse = Tex(r" Examining Qubits yields $ | 0 \rangle $ w/ probability $ | \alpha |^2 $, or $ |1 \rangle$  w/ probability $ | \beta |^2 $.").scale(0.7).move_to([0,0.5,0])
 
         therefore = Tex(r"Therefore,").scale(0.7).move_to([-5,-0.5,0])
 
@@ -277,32 +314,32 @@ class Probability(ThreeDScene):
             start=np.array([0, 0, 0]),
             end=np.array([3, 1, 1]),
             resolution=8, 
-            color = TEAL_B)
+            color = PURPLE_B)
         arr2 = Arrow3D(
             start=np.array([0, 0, 0]),
             end=np.array([2, -1, 3]),
             resolution=8,
-            color = TEAL_B)
+            color = PURPLE_B)
         arr3 = Arrow3D(
             start=np.array([0, 0, 0]),
             end=np.array([-3, 1, -2]),
             resolution=8,
-            color = TEAL_B)
+            color = PURPLE_B)
         arr4 = Arrow3D(
             start=np.array([0, 0, 0]),
             end=np.array([-2, -4, 3]),
             resolution=8,
-            color = TEAL_B)
+            color = PURPLE_B)
         arr5 = Arrow3D(
             start=np.array([0, 0, 0]),
             end=np.array([-3, -1, -2]),
             resolution=8,
-            color = TEAL_B)
+            color = PURPLE_B)
         arr6 = Arrow3D(
             start=np.array([0, 0, 0]),
             end=np.array([2, 0, 0]),
             resolution=8,
-            color = TEAL_B)
+            color = PURPLE_B)
 
         self.play(ReplacementTransform(arrow1, arr1),
                   ReplacementTransform(arrow2, arr2), 
@@ -404,12 +441,120 @@ class Probability(ThreeDScene):
         self.wait(2)
         self.play(ReplacementTransform(vec0, arr7), phi.animate.set_value(90*DEGREES), theta.animate.set_value(90*DEGREES), run_time = 3)
         self.wait(1)
-        self.play(ReplacementTransform(arr7, vec1), phi.animate.set_value(180*DEGREES), run_time = 4)
-        self.wait(5)
+        self.play(ReplacementTransform(arr7, vec1), phi.animate.set_value(-90*DEGREES), run_time = 4)
+        self.wait(5) 
+
+        self.play(FadeOut(vec1, sphere), run_time = 4)
+
+class Determination(Scene):
+    def construct(self):
+        title = Tex(r"Methods of realizing Qubits").to_edge(UL)
+
+
+        bullet1 = Tex(r"different polarizations of a photon").move_to([0,2,0])
+        bullet2 = Tex(r"adjustment of nuclear spin in a magnetic field").move_to([0,1,0])
+        bullet3 = Tex(r"two different states of an electron orbiting an electron").move_to([0,0,0])
+
+
+        self.play(Write(bullet1))
+        self.wait()
+        self.play(Write(bullet2))
+        self.wait()
+        self.play(Write(bullet3))
+
+        self.wait()
+        self.play(FadeOut(bullet1, bullet2, bullet3), run_time = 1)
+
+
+class BlochSphereDeriv(ThreeDScene):
+    def construct(self):
         
+        prob = Tex(r"Because $|\alpha|^2 + |\beta|^2 = 1$,").to_edge(UL)
+        deriv = MathTex(r"|\psi\rangle &= \alpha |0\rangle + \beta |1\rangle \\ &=e^{i\gamma} \left(\cos{\frac{\theta}{2}} |0\rangle + e^{i\varphi}\sin{\frac{\theta}{2}}|1\rangle\right)").move_to([0,0,0])
+        final = MathTex(r"|\psi\rangle & \approx \cos{\frac{\theta}{2} |0\rangle + e^{i\varphi}\sin{\frac{\theta}{2}} |1\rangle").move_to([0, -3, 0])
+
+
+        self.play(Write(prob))
+        self.wait(3)
+        self.play(Write(deriv), run_time = 5)
+        self.wait(3)
+        self.play(Write(final))
+        self.wait(2)
+        self.play(FadeOut(prob, deriv), run_time = 2)
+
+        axes = ThreeDAxes(
+            x_range = (-1, 1, 1), 
+            y_range = (-1, 1, 1), 
+            z_range = (-1, 1, 1), 
+            x_length = 10, 
+            y_length = 10, 
+            z_length = 10
+        )
+
+        self.move_camera(
+            phi = 90*DEGREES, 
+            theta = -90*DEGREES,
+            distance = 1
+        )  
+
+        self.play(FadeOut(final))
+
+        arrow1 = Arrow3D(
+            start = np.array([0, 0, 0]),
+            end = np.array([2, 0, 0]),
+            resolution = 8, 
+            color = TEAL_B, 
+        )
+
+        arrow2 = Arrow3D(
+            start = np.array([0, 0, 0]),
+            end = np.array([2, 2, 0]),
+            resolution = 8, 
+            color = BLUE_B, 
+        )
+
+        arrow3 = Arrow3D(
+            start = np.array([0, 0, 0]),
+            end = np.array([2, 2, 2]),
+            resolution = 8, 
+            color = TEAL_B, 
+        )
+
+        phix = MathTex(r"\varphi").move_to([-8,-8,-8])
+        thetax = MathTex(r"\theta").move_to([-8,-8,-8])
+
+        phi, theta, focal_distance, gamma, distance_to_origin = self.camera.get_value_trackers()
+
+        sphere = Surface(
+            lambda u, v: np.array([
+            2 * np.cos(u) * np.cos(v),
+            2 * np.cos(u) * np.sin(v),
+            2 * np.sin(u)
+            ]), v_range=[0, TAU], u_range=[-PI / 2, PI / 2],
+            checkerboard_colors=[RED_A, PURPLE_A], resolution=(32, 64), fill_opacity = 0.1
+        )
+
+        self.play(Create(axes), run_time = 1)
+
+        self.play(GrowFromPoint(arrow1, ORIGIN), Create(sphere), run_time = 4)
+
+        self.add_fixed_orientation_mobjects(thetax)
+
+        self.play(ReplacementTransform(arrow1, arrow2), theta.animate.set_value(35*DEGREES), phi.animate.set_value(80*DEGREES), run_time = 3)
+        self.wait()
+
+        self.play(ReplacementTransform(arrow2, arrow3), phi.animate.set_value(70*DEGREES), Transform(thetax, phix), run_time = 3)
+        self.wait(3)
+
+
 
         
 
+
+
+
+         
+        
         
 
 
