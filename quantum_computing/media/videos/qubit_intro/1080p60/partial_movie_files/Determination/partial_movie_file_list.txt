@@ -1,0 +1,8 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/1080p60/partial_movie_files/Determination/2902699114_1546236111_223132457.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/1080p60/partial_movie_files/Determination/3931933789_329969645_1480780335.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/1080p60/partial_movie_files/Determination/3931933789_1895653961_2126280087.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/1080p60/partial_movie_files/Determination/3931933789_329969645_3018823685.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/1080p60/partial_movie_files/Determination/3931933789_2003228044_1240052087.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/1080p60/partial_movie_files/Determination/3931933789_329969645_2769209614.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/1080p60/partial_movie_files/Determination/3931933789_3701605750_1085572655.mp4'

@@ -1,0 +1,9 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/Entanglement2/182677780_3073289174_223132457.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/Entanglement2/933115157_2540799457_2850584179.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/Entanglement2/933115157_1780091877_2356020583.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/Entanglement2/933115157_1712306478_1373201529.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/Entanglement2/933115157_66471484_1373201529.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/Entanglement2/933115157_41070242_4190667020.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/Entanglement2/933115157_1951136788_4190667020.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/Entanglement2/933115157_1760617976_2358810818.mp4'

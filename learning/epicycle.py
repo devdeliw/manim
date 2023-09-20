@@ -101,19 +101,19 @@ class EpicCycle(mn.Scene):
     def construct(self):
         # Scale because I don't want to edit the SVG because I'm lazy
         path = SVGPath(self.path_str).scale(0.01)
-        path.set_color(mn.TEAL).set_opacity(0.8)
+        path.set_color(mn.TEAL_B).set_opacity(0.8)
 
         self.add(path)
 
         for num_coeffs in range(5, 105 + 1, 20):
             ep = Epicycle(path, num_coeffs)
-            ep_copy = ep.copy().draw_circles(0, color=mn.BLUE)
+            ep_copy = ep.copy().draw_circles(0, color=mn.MAROON_A)
 
             text = mn.Tex(f"").to_edge(mn.UP).shift(mn.LEFT)
 
             self.play(mn.FadeIn(mn.VGroup(ep_copy, text)), run_time=0.75)
             self.remove(ep_copy)
 
-            self.play(ep.animate_circles(color=mn.BLUE), run_time=10, rate_func=mn.linear)
+            self.play(ep.animate_circles(color=mn.MAROON_A), run_time=10, rate_func=mn.linear)
 
             self.play(mn.FadeOut(mn.VGroup(ep, text)), run_time = 4)

@@ -16,5 +16,6 @@ file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro
 file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/Intro/1442284246_329969645_526313703.mp4'
 file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/Intro/1442284246_718438201_3221002438.mp4'
 file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/Intro/1442284246_329969645_3954225958.mp4'
-file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/Intro/1442284246_4293146389_2525182600.mp4'
-file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/Intro/1442284246_2585519974_4067559736.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/Intro/1442284246_2353041984_1297087979.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/Intro/1442284246_4293146389_66200144.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/qubit_intro/480p15/partial_movie_files/Intro/1442284246_4262021800_4067559736.mp4'
