@@ -49,7 +49,7 @@ class Complex_Intro(Scene):
 
         i_equation = MathTex(r"i = \sqrt{-1}").move_to([0,2,0]).set_color([TEAL_B, PINK, YELLOW])
         i_IMequations = MathTex(r"\sqrt{-16} &= 4i \\  \sqrt{-3} &= i\sqrt{3} \\ i^3 &= -i").move_to([0,0,0])
-        i_Requations = MathTex(r"i^2 &= 1 \\ \sqrt{-2}\sqrt{-8} = i\sqrt{2} \cdot i\sqrt{8} &= -4 \\ i^{4n} &= 1").move_to([0,0,0])
+        i_Requations = MathTex(r"i^2 &= -1 \\ \sqrt{-2}\sqrt{-8} = i\sqrt{2} \cdot i\sqrt{8} &= -4 \\ i^{4n} &= 1").move_to([0,0,0])
 
         self.play(Write(i_equation))
         self.wait(2)
