@@ -1,0 +1,4 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/computation_intro/1080p60/partial_movie_files/LogicGates/2902699114_2005595493_223132457.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/computation_intro/1080p60/partial_movie_files/LogicGates/3931933789_36632488_2760490764.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/computation_intro/1080p60/partial_movie_files/LogicGates/3931933789_3302166763_282393003.mp4'

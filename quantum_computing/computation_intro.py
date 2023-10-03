@@ -315,6 +315,79 @@ class Gates(ThreeDScene):
         self.play(FadeOut(bloch, labels, one, zero, in_vec, zeroone, title, axes), run_time = 3)
 
 
+class LogicGates(Scene):
+    def construct(self):
+        
+        ax = Axes( 
+            x_range = (-10, 10, 1), 
+            y_range = (-10, 10, 1),
+            x_length = 10, 
+            y_length = 10
+        )
+
+
+        x = MathTex(r"x").move_to([-5, 0, 0])
+        xbar = MathTex(r"\bar{x}").move_to([-2.8, 0, 0])
+
+        ltriangle = Line(start =  [-4.7, 0, 0], end = [-4.4, 0, 0])
+        vtriangle = Line(start =  [-4.4, -0.7, 0], end = [-4.4, 0.7, 0])
+        tdiag = Line(start =  [-4.4, 0.7, 0], end = [-3.5, 0, 0])
+        bdiag = Line(start =  [-4.4, -0.7, 0], end = [-3.5, 0, 0])
+        circ = Circle(radius = 0.1, color = WHITE).move_to([-3.4, 0, 0])
+        rtriangle = Line(start =  [-3.3, 0, 0], end = [-3, 0, 0])
+        
+        vline = Line(start =  [-2, -2, 0], end = [-2, 2, 0]).set_color([TEAL_B, MAROON_A])
+        xl = MathTex(r" \alpha |0\rangle + \beta |1\rangle").move_to([0, 1.5, 0])
+        xlinel = Line(start =  [1.5, 1.5, 0], end = [2, 1.5, 0])
+        xvl = Line(start =  [2, 1.875, 0], end = [2, 1.125, 0])
+        xtl = Line(start =  [2, 1.875, 0], end = [2.75, 1.875, 0])
+        xbl = Line(start =  [2, 1.125, 0], end = [2.75, 1.125, 0])
+        xvr = Line(start =  [2.75, 1.125, 0], end = [2.75, 1.875, 0])
+        xliner = Line(start =  [2.75, 1.5, 0], end = [3.25, 1.5, 0])
+        X = MathTex(r"X").move_to([2.375, 1.5, 0]).scale(0.9)
+        xr = MathTex(r" \beta |0\rangle + \alpha |1\rangle").move_to([4.75, 1.5, 0])
+
+        zl = MathTex(r" \alpha |0\rangle + \beta |1\rangle").move_to([0, 0, 0])
+        zlinel = Line(start =  [1.5, 0, 0], end = [2, 0, 0])
+        zvl = Line(start =  [2, 0.375, 0], end = [2, -0.375, 0])
+        ztl = Line(start =  [2, 0.375, 0], end = [2.75, 0.375, 0])
+        zbl = Line(start =  [2, -0.375, 0], end = [2.75, -0.375, 0])
+        zvr = Line(start =  [2.75, -0.375, 0], end = [2.75, 0.375, 0])
+        zliner = Line(start =  [2.75, 0, 0], end = [3.25, 0, 0])
+        Z = MathTex(r"Z").move_to([2.375, 0, 0]).scale(0.9)
+        zr = MathTex(r" \alpha |0\rangle - \beta |1\rangle").move_to([4.75, 0, 0])
+
+        hl = MathTex(r" \alpha |0\rangle + \beta |1\rangle").move_to([0, -1.5, 0])
+        hlinel = Line(start =  [1.5, -1.5, 0], end = [2, -1.5, 0])
+        hvl = Line(start =  [2, -1.125, 0], end = [2, -1.875, 0])
+        htl = Line(start =  [2, -1.125, 0], end = [2.75, -1.125, 0])
+        hbl = Line(start =  [2, -1.875, 0], end = [2.75, -1.875, 0])
+        hvr = Line(start =  [2.75, -1.875, 0], end = [2.75, -1.125, 0])
+        hliner = Line(start =  [2.75, -1.5, 0], end = [3.25, -1.5, 0])
+        H = MathTex(r"H").move_to([2.375, -1.5, 0]).scale(0.9)
+        hr = MathTex(r" \alpha \frac{|0\rangle + |1\rangle}{\sqrt{2}}\
+                     + \beta\frac{|0\rangle - |1\rangle}{\sqrt{2}").move_to([5.35, -1.5, 0]).scale(0.7)
+
+        group = VGroup(x, xbar, ltriangle, vtriangle, tdiag, bdiag, circ, rtriangle, vline, 
+                       xl, xlinel, xvl, xtl, xbl, xvr, xliner, X, xr, 
+                       zl, zlinel, zvl, ztl, zbl, zvr, zliner, Z, zr,
+                       hl, hlinel, hvl, htl, hbl, hvr, hliner, H, hr
+                ).shift(1 * LEFT)
+
+        group1 = VGroup(xl, xlinel, xvl, xtl, xbl, xvr, xliner, X, xr).set_color([TEAL_B])
+        group2 = VGroup(zl, zlinel, zvl, ztl, zbl, zvr, zliner, Z, zr).set_color([MAROON_A])
+        group3 = VGroup(hl, hlinel, hvl, htl, hbl, hvr, hliner, H, hr).set_color([TEAL_B, PINK, YELLOW])
+
+        self.play(Write(group), run_time = 8)
+        self.wait(5)
+        self.play(FadeOut(group), run_time = 3)
+                
+            
+
+    
+
+
+
 
         
 
