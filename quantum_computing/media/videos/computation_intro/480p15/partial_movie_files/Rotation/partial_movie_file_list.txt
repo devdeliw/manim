@@ -1,0 +1,8 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/computation_intro/480p15/partial_movie_files/Rotation/4266129954_1112113180_223132457.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/computation_intro/480p15/partial_movie_files/Rotation/1442284246_2094990105_4080525908.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/computation_intro/480p15/partial_movie_files/Rotation/1442284246_2750986127_2348261695.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/computation_intro/480p15/partial_movie_files/Rotation/1442284246_1713632580_2348261695.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/computation_intro/480p15/partial_movie_files/Rotation/1442284246_1482454880_1302301585.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/computation_intro/480p15/partial_movie_files/Rotation/1442284246_4018215155_1847896273.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/computation_intro/480p15/partial_movie_files/Rotation/1442284246_2478093091_2358810818.mp4'

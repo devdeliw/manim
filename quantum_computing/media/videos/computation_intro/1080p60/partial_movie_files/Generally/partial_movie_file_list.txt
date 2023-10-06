@@ -1,0 +1,10 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/computation_intro/1080p60/partial_movie_files/Generally/2902699114_4266715140_223132457.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/computation_intro/1080p60/partial_movie_files/Generally/3931933789_1076466279_2452406676.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/computation_intro/1080p60/partial_movie_files/Generally/3931933789_2308536097_3747182826.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/computation_intro/1080p60/partial_movie_files/Generally/3931933789_125286499_1773869390.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/computation_intro/1080p60/partial_movie_files/Generally/3931933789_362122308_384752828.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/computation_intro/1080p60/partial_movie_files/Generally/3931933789_329969645_3105275997.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/computation_intro/1080p60/partial_movie_files/Generally/3931933789_1506345458_2896180480.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/computation_intro/1080p60/partial_movie_files/Generally/3931933789_2358420384_345977145.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/computation_intro/1080p60/partial_movie_files/Generally/3931933789_863145455_3946541808.mp4'
