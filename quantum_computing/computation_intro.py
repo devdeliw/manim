@@ -806,7 +806,7 @@ class Thumbnail(Scene):
 
         group.shift(DOWN*0.7)
 
-        Quantum_Computation = Tex(r"Quantum Computation").move_to([0, 2.5, 0]).scale(1.5)
+        Quantum_Computation = Tex(r"Quantum Computation").move_to([0, 2.5, 0]).scale(2)
 
    
         self.add(group, Quantum_Computation)
