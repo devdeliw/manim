@@ -153,7 +153,7 @@ class Efficient(ThreeDScene):
 
         vgf = VGroup(vg2, vg3, vg4, vg5, vg6, vg7)
 
-        self.play(Create(vgf.shift(3.5*LEFT).scale(0.7).set_color([GRAY_D])))
+        self.play(Create(vgf.shift(3.5*LEFT).scale(0.7).set_color([GRAY_D, GRAY_C])))
 
         self.play(Rotate(vgf, PI/3, [0, 1, 0]),
         )
@@ -292,9 +292,9 @@ class CubeAlgo(ThreeDScene):
                 Tex("x"), Tex("y"), Tex("z")
                 )
         
-        cube = Cube(side_length=3, fill_opacity=0.3).set_color([GRAY_D, GRAY_C]).shift(LEFT*4).scale(1.2)
+        cube = Cube(side_length=3, fill_opacity=0.15, stroke_width = 3).set_color([TEAL_B, MAROON_A]).shift(LEFT*4).scale(1.2)
         self.add(cube)
-
+        
         vgs = Line(start =  [-1.5, 0.5, 0], end = [-1.1, 0.5, 0])
         vgld = Line(start =  [-1.1, 0.5, 0], end = [-0.7, 0.25, 0])
         vgll = Line(start =  [-0.7, 0.25, 0], end = [-0.3, 0.25, 0])
@@ -340,7 +340,42 @@ class CubeAlgo(ThreeDScene):
         vge2.add(*[Line([1.1, i+1, 0], [1.5, i+1, 0]) for i in np.arange(-1.5, 1, 0.5)])
 
         group2 = VGroup(vgs2, vgld2, vgll2, vgmd2, vgrl2, vgrd2, vge2)
+        """
+        
+        arr = VGroup()
 
+        arr.add(*[Line([-1.5, i, 0], [-1.1, i, 0]) for i in np.arange(-0.5, 2, 0.5)])
+        arr.add(*[Line([-1.1, i, 0], [-0.7, i-0.25, 0]) for i in np.arange(-0.5, 2, 0.5)])
+        arr.add(*[Line([-0.7, i-0.25, 0], [-0.3, i-0.25, 0]) for i in np.arange(-0.5, 2, 0.5)])
+        arr.add(*[Line([-0.3, i-0.25, 0], [0.3, i-0.75, 0]) for i in np.arange(-0.5, 2, 0.5)])
+        arr.add(*[Line([0.3, i-0.75, 0], [0.7, i-0.75, 0]) for i in np.arange(-0.5, 2, 0.5)])
+        arr.add(*[Line([0.7, i-0.75, 0], [1.1, i-1, 0]) for i in np.arange(-0.5, 2, 0.5)])
+        arr.add(*[Line([1.1, i-1, 0], [1.5, i-1, 0]) for i in np.arange(-0.5, 2, 0.5)])
+
+        arr.add(*[Line([-1.5, i, 0], [-1.1, i, 0]) for i in np.arange(-1.5, 1, 0.5)])
+        arr.add(*[Line([-1.1, i, 0], [-0.7, i+0.25, 0]) for i in np.arange(-1.5, 1, 0.5)])
+        arr.add(*[Line([-0.7, i+0.25, 0], [-0.3, i+0.25, 0]) for i in np.arange(-1.5, 1, 0.5)])
+        arr.add(*[Line([-0.3, i+0.25, 0], [0.3, i+0.75, 0]) for i in np.arange(-1.5, 1, 0.5)])
+        arr.add(*[Line([0.3, i+0.75, 0], [0.7, i+0.75, 0]) for i in np.arange(-1.5, 1, 0.5)])
+        arr.add(*[Line([0.7, i+0.75, 0], [1.1, i+1, 0]) for i in np.arange(-1.5, 1, 0.5)])
+        arr.add(*[Line([1.1, i+1, 0], [1.5, i+1, 0]) for i in np.arange(-1.5, 1, 0.5)])
+
+        arr2 = arr.copy()
+        arr2.move_to([0, 0, -1.5])
+        arr3 = arr.copy()
+        arr3.move_to([0, 0, -1])
+        arr4 = arr.copy()
+        arr4.move_to([0, 0, -0.5])
+        arr5 = arr.copy()
+        arr5.move_to([0, 0, 0.5])
+        arr6 = arr.copy()
+        arr6.move_to([0, 0, 1])
+        arr7 = arr.copy()
+        arr7.move_to([0, 0, 1.5])
+
+        arrf = VGroup(arr, arr2, arr3, arr4, arr5, arr6, arr7).shift(LEFT*4).scale(1.2)
+
+        """
         groupf11 = group1.copy()
         groupf11.move_to([0, 0, -1.5])
         groupf12 = group1.copy()
@@ -369,7 +404,7 @@ class CubeAlgo(ThreeDScene):
 
         group_final = VGroup(group1, groupf11, groupf12, groupf13, groupf14, groupf15, groupf16, 
                              group2, groupf21, groupf22, groupf23, groupf24, groupf25, groupf26).shift(LEFT*4).scale(1.2)
-
+        
         self.play(Write(cube))
         self.wait()
         self.play(Write(group_final.set_color([GRAY_D, GRAY_C])))
@@ -381,31 +416,42 @@ class CubeAlgo(ThreeDScene):
                   Rotate(cube, PI/2, [1,0,0])
         )
         
-        self.wait()
-        
+        self.wait(1)
+        """
+        i = 0
+        while i < 5:
+            if i % 2 == 0:
+                self.play(Write(arrf.set_color([TEAL_B, MAROON_A])), run_time = 2)
+                self.remove(arrf)
+                i += 1
+            else:
+                self.play(Write(arrf.set_color([MAROON_A, TEAL_B])), run_time = 2)
+                self.remove(arrf)
+                i += 1
+        """
+
+    
         i = 0
         while i < 20:
+            
             self.remove(group_final)
 
-            if i % 2 == 0: 
-                group_final.set_color([TEAL_A, MAROON_A])
-            else: 
-                group_final.set_color([RED_A, PURPLE_A])
+            group_final.set_color([TEAL_B, MAROON_A])
 
-            self.play(Write(group1[0]), 
-                      Write(group2[0]),
-                      Write(groupf11[0]),
-                      Write(groupf21[0]),
-                      Write(groupf12[0]),
-                      Write(groupf22[0]),
-                      Write(groupf13[0]),
-                      Write(groupf23[0]),
-                      Write(groupf14[0]),
-                      Write(groupf24[0]),
-                      Write(groupf15[0]),
-                      Write(groupf25[0]),
-                      Write(groupf16[0]),
-                      Write(groupf26[0]),
+            self.play(FadeIn(group1[0]), 
+                      FadeIn(group2[0]),
+                      FadeIn(groupf11[0]),
+                      FadeIn(groupf21[0]),
+                      FadeIn(groupf12[0]),
+                      FadeIn(groupf22[0]),
+                      FadeIn(groupf13[0]),
+                      FadeIn(groupf23[0]),
+                      FadeIn(groupf14[0]),
+                      FadeIn(groupf24[0]),
+                      FadeIn(groupf15[0]),
+                      FadeIn(groupf25[0]),
+                      FadeIn(groupf16[0]),
+                      FadeIn(groupf26[0]),
                       run_time = 0.1)
             self.play(
                       Write(group1[1]), 
@@ -505,10 +551,6 @@ class CubeAlgo(ThreeDScene):
                       run_time = 0.1
             )
             i += 1
-
-            self.play(Unwrite(group_final), Unwrite(cube))
-            self.wait()
-
-
-
-
+        
+        self.play(Unwrite(cube), Unwrite(group_final))
+        self.wait()
