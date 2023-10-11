@@ -72,15 +72,16 @@ class Time(ThreeDScene):
         FeedForwardLayer(7),
         FeedForwardLayer(12),
         FeedForwardLayer(18),
-        FeedForwardLayer(25)
+        FeedForwardLayer(8), 
+        FeedForwardLayer(3)
             ],
-            layer_spacing=0.8,
+            layer_spacing=1,
         )
         nn.move_to(ORIGIN)
         self.add(nn)
         self.play(
             make_neural_network_dropout_animation(
-                nn, dropout_rate=0.2, do_forward_pass=True
+                nn, dropout_rate=0.25, do_forward_pass=True
             )
         )
         self.wait(1)
@@ -173,4 +174,341 @@ class Efficient(ThreeDScene):
         self.play(Uncreate(vgf))
 
         self.wait(2)
+
+class Efficiency(Scene):
+    def construct(self):
+
+        vgs1 = VGroup()
+        vgld1 = VGroup()
+        vgll1 = VGroup()
+        vgmd1 = VGroup()
+        vgrl1 = VGroup()
+        vgrd1 = VGroup()
+        vge1 = VGroup()
+        vgs2 = VGroup()
+        vgld2 = VGroup()
+        vgll2 = VGroup()
+        vgmd2 = VGroup()
+        vgrl2 = VGroup()
+        vgrd2 = VGroup()
+        vge2 = VGroup()
+
+        vgs1.add(*[Line(start = [-4, i, 0], end = [-3.5, i, 0]) for i in np.arange(-5, 6)])
+        vgld1.add(*[Line(start = [-3.5, i+0.5, 0], end = [-3, i, 0]) for i in np.arange(-5.5, 5.5, 1)])
+        vgll1.add(*[Line(start = [-3, i, 0], end = [-2, i, 0]) for i in np.arange(-5.5, 5.5, 1)])
+        vgmd1.add(*[Line(start = [-2, i+0.5, 0], end = [-1.5, i, 0]) for i in np.arange(-6, 5, 1)])
+        vgrl1.add(*[Line(start = [-1.5, i, 0], end = [-0.5, i, 0]) for i in np.arange(-6, 5, 1)])
+        vgrd1.add(*[Line(start = [-0.5, i+0.5, 0], end = [0, i, 0]) for i in np.arange(-6.5, 4.5, 1)])
+        vge1.add(*[Line(start = [0, i, 0], end = [0.5, i, 0]) for i in np.arange(-6.5, 4.5, 1)])
+        
+        vgs2.add(*[Line(start = [-4, i, 0], end = [-3.5, i, 0]) for i in np.arange(-5.5, 5.5, 1)])
+        vgld2.add(*[Line(start = [-3.5, i, 0], end = [-3, i+0.5, 0]) for i in np.arange(-5.5, 5.5, 1)])
+        vgll2.add(*[Line(start = [-3, i, 0], end = [-2, i, 0]) for i in np.arange(-5, 6, 1)])
+        vgmd2.add(*[Line(start = [-2, i, 0], end = [-1.5, i+0.5, 0]) for i in np.arange(-5, 6, 1)])
+        vgrl2.add(*[Line(start = [-1.5, i, 0], end = [-0.5, i, 0]) for i in np.arange(-4.5, 6.5, 1)])
+        vgrd2.add(*[Line(start = [-0.5, i, 0], end = [0, i+0.5, 0]) for i in np.arange(-4.5, 6.5, 1)])
+        vge2.add(*[Line(start = [0, i, 0], end = [0.5, i, 0]) for i in np.arange(-4, 7, 1)])
+        
+        vg = VGroup(vgs1, vgld1, vgll1, vgmd1, vgrl1, vgrd1, vge1,
+                    vgs2, vgld2, vgll2, vgmd2, vgrl2, vgrd2, vge2
+            )
+
+        vdt = VGroup()
+        vdb = VGroup()
+
+        vdt.add(*[Dot([-4, i, 0], radius = 0.08, color = TEAL_B) for i in np.arange(-5, 6, 1)])
+        vdb.add(*[Dot([-4, i, 0], radius = 0.08, color = MAROON_A) for i in np.arange(-5.5, 5.5, 1)])
+
+        j = 0 
+        while j < 5:
+
+            vdt = VGroup()
+            vdb = VGroup()
+
+            vdt.add(*[Dot([-4, k, 0], radius = 0.08, color = TEAL_B) for k in np.arange(-5, 6, 1)])
+            vdb.add(*[Dot([-4, k, 0], radius = 0.08, color = MAROON_A) for k in np.arange(-5.5, 5.5, 1)])
+
+            vtracedpath = VGroup()
+            vtracedpath.add(*[TracedPath(vdt[m].get_center, dissipating_time = 0.05, stroke_opacity = [0, 1]) for m in range(0, 10)])
+            vtracedpath.add(*[TracedPath(vdb[m].get_center, dissipating_time = 0.05, stroke_opacity = [0, 1]) for m in range(0, 10)])
+            self.add(vtracedpath)
+
+            group = VGroup(vdt.shift(3*LEFT), vdb.shift(3*LEFT))
+
+            for i in range(1, 10): 
+
+                self.play(
+                        MoveAlongPath(vdt[i], vgs1[i]), 
+                        MoveAlongPath(vdb[i], vgs2[i]),
+                        run_time = 0.05, rate_func = rate_functions.ease_in_cubic) 
+                self.play(
+                        MoveAlongPath(vdt[i], vgld1[i]), 
+                        MoveAlongPath(vdb[i], vgld2[i]), 
+                        run_time = 0.05, rate_func = rate_functions.ease_in_cubic)
+                self.play(
+                        MoveAlongPath(vdt[i], vgll1[i]),
+                        MoveAlongPath(vdb[i], vgll2[i]),
+                        run_time = 0.05, rate_func = rate_functions.ease_in_cubic)
+                self.play(
+                        MoveAlongPath(vdt[i], vgmd1[i]),
+                        MoveAlongPath(vdb[i], vgmd2[i]),
+                        run_time = 0.05, rate_func = rate_functions.ease_in_cubic)
+                self.play(
+                        MoveAlongPath(vdt[i], vgrl1[i]),
+                        MoveAlongPath(vdb[i], vgrl2[i]),
+                        run_time = 0.05, rate_func = rate_functions.ease_in_cubic)
+                self.play(
+                        MoveAlongPath(vdt[i], vgrd1[i]),
+                        MoveAlongPath(vdb[i], vgrd2[i]),
+                        run_time = 0.05, rate_func = rate_functions.ease_in_cubic)
+                self.play(
+                        MoveAlongPath(vdt[i], vge1[i]),
+                        MoveAlongPath(vdb[i], vge2[i]),
+                        run_time = 0.05, rate_func = rate_functions.ease_in_cubic)
+
+                self.remove(vdt[i], vdb[i])
+
+            j += 1
+
+        self.play(Write(vg.scale(1.5).shift(LEFT*3).set_color([GRAY_D, GRAY_C])), run_time = 2)
+        self.wait(2)
+        self.play(FadeOut(vg))
+
+
+class CubeAlgo(ThreeDScene):
+    def construct(self):
+        self.set_camera_orientation(phi=75*DEGREES, theta=-55*DEGREES)
+
+        axes = ThreeDAxes(
+            x_range = (-5, 5, 1), 
+            y_range = (-5, 5, 1), 
+            z_range = (-5, 5, 1), 
+            x_length = 5, 
+            y_length = 5, 
+            z_length = 5
+        )
+
+        labels = axes.get_axis_labels(
+                Tex("x"), Tex("y"), Tex("z")
+                )
+        
+        cube = Cube(side_length=3, fill_opacity=0.3).set_color([GRAY_D, GRAY_C]).shift(LEFT*4).scale(1.2)
+        self.add(cube)
+
+        vgs = Line(start =  [-1.5, 0.5, 0], end = [-1.1, 0.5, 0])
+        vgld = Line(start =  [-1.1, 0.5, 0], end = [-0.7, 0.25, 0])
+        vgll = Line(start =  [-0.7, 0.25, 0], end = [-0.3, 0.25, 0])
+        vgmd = Line(start =  [-0.3, 0.25, 0], end = [0.3, -0.25, 0])
+        vgrl = Line(start =  [0.3, -0.25, 0], end = [0.7, -0.25, 0])
+        vgrd = Line(start =  [0.7, -0.25, 0], end = [1.1, -0.5, 0])
+        vge = Line(start =  [1.1, -0.5, 0], end = [1.5, -0.5, 0])
+
+        group = VGroup(vgs, vgld, vgll, vgmd, vgrl, vgrd, vge)
+
+        vgs1 = VGroup()
+        vgld1 = VGroup()
+        vgll1 = VGroup()
+        vgmd1 = VGroup()
+        vgrl1 = VGroup()
+        vgrd1 = VGroup()
+        vge1 = VGroup()
+
+        vgs2 = VGroup()
+        vgld2 = VGroup()
+        vgll2 = VGroup()
+        vgmd2 = VGroup()
+        vgrl2 = VGroup()
+        vgrd2 = VGroup()
+        vge2 = VGroup()
+    
+        vgs1.add(*[Line([-1.5, i, 0], [-1.1, i, 0]) for i in np.arange(-0.5, 2, 0.5)])
+        vgld1.add(*[Line([-1.1, i, 0], [-0.7, i-0.25, 0]) for i in np.arange(-0.5, 2, 0.5)])
+        vgll1.add(*[Line([-0.7, i-0.25, 0], [-0.3, i-0.25, 0]) for i in np.arange(-0.5, 2, 0.5)])
+        vgmd1.add(*[Line([-0.3, i-0.25, 0], [0.3, i-0.75, 0]) for i in np.arange(-0.5, 2, 0.5)])
+        vgrl1.add(*[Line([0.3, i-0.75, 0], [0.7, i-0.75, 0]) for i in np.arange(-0.5, 2, 0.5)])
+        vgrd1.add(*[Line([0.7, i-0.75, 0], [1.1, i-1, 0]) for i in np.arange(-0.5, 2, 0.5)])
+        vge1.add(*[Line([1.1, i-1, 0], [1.5, i-1, 0]) for i in np.arange(-0.5, 2, 0.5)])
+
+        group1 = VGroup(vgs1, vgld1, vgll1, vgmd1, vgrl1, vgrd1, vge1)
+
+        vgs2.add(*[Line([-1.5, i, 0], [-1.1, i, 0]) for i in np.arange(-1.5, 1, 0.5)])
+        vgld2.add(*[Line([-1.1, i, 0], [-0.7, i+0.25, 0]) for i in np.arange(-1.5, 1, 0.5)])
+        vgll2.add(*[Line([-0.7, i+0.25, 0], [-0.3, i+0.25, 0]) for i in np.arange(-1.5, 1, 0.5)])
+        vgmd2.add(*[Line([-0.3, i+0.25, 0], [0.3, i+0.75, 0]) for i in np.arange(-1.5, 1, 0.5)])
+        vgrl2.add(*[Line([0.3, i+0.75, 0], [0.7, i+0.75, 0]) for i in np.arange(-1.5, 1, 0.5)])
+        vgrd2.add(*[Line([0.7, i+0.75, 0], [1.1, i+1, 0]) for i in np.arange(-1.5, 1, 0.5)])
+        vge2.add(*[Line([1.1, i+1, 0], [1.5, i+1, 0]) for i in np.arange(-1.5, 1, 0.5)])
+
+        group2 = VGroup(vgs2, vgld2, vgll2, vgmd2, vgrl2, vgrd2, vge2)
+
+        groupf11 = group1.copy()
+        groupf11.move_to([0, 0, -1.5])
+        groupf12 = group1.copy()
+        groupf12.move_to([0, 0, -1])
+        groupf13 = group1.copy()
+        groupf13.move_to([0, 0, -0.5])
+        groupf14 = group1.copy()
+        groupf14.move_to([0, 0, 0.5])
+        groupf15 = group1.copy()
+        groupf15.move_to([0, 0, 1])
+        groupf16 = group1.copy()
+        groupf16.move_to([0, 0, 1.5])
+
+        groupf21 = group2.copy()
+        groupf21.move_to([0, 0, -1.5])
+        groupf22 = group2.copy()
+        groupf22.move_to([0, 0, -1])
+        groupf23 = group2.copy()
+        groupf23.move_to([0, 0, -0.5])
+        groupf24 = group2.copy()
+        groupf24.move_to([0, 0, 0.5])
+        groupf25 = group2.copy()
+        groupf25.move_to([0, 0, 1])
+        groupf26 = group2.copy()
+        groupf26.move_to([0, 0, 1.5])
+
+        group_final = VGroup(group1, groupf11, groupf12, groupf13, groupf14, groupf15, groupf16, 
+                             group2, groupf21, groupf22, groupf23, groupf24, groupf25, groupf26).shift(LEFT*4).scale(1.2)
+
+        self.play(Write(cube))
+        self.wait()
+        self.play(Write(group_final.set_color([GRAY_D, GRAY_C])))
+
+        self.play(Rotate(cube, PI/2, [0,1 ,0]), 
+                  Rotate(group_final, PI/2, [0,1,0])
+        )
+        self.play(Rotate(group_final, PI/2, [1,0,0]), 
+                  Rotate(cube, PI/2, [1,0,0])
+        )
+        
+        self.wait()
+        
+        i = 0
+        while i < 20:
+            self.remove(group_final)
+
+            if i % 2 == 0: 
+                group_final.set_color([TEAL_A, MAROON_A])
+            else: 
+                group_final.set_color([RED_A, PURPLE_A])
+
+            self.play(Write(group1[0]), 
+                      Write(group2[0]),
+                      Write(groupf11[0]),
+                      Write(groupf21[0]),
+                      Write(groupf12[0]),
+                      Write(groupf22[0]),
+                      Write(groupf13[0]),
+                      Write(groupf23[0]),
+                      Write(groupf14[0]),
+                      Write(groupf24[0]),
+                      Write(groupf15[0]),
+                      Write(groupf25[0]),
+                      Write(groupf16[0]),
+                      Write(groupf26[0]),
+                      run_time = 0.1)
+            self.play(
+                      Write(group1[1]), 
+                      Write(group2[1]), 
+                      Write(groupf11[1]),
+                      Write(groupf21[1]),
+                      Write(groupf12[1]),
+                      Write(groupf22[1]),
+                      Write(groupf13[1]),
+                      Write(groupf23[1]),
+                      Write(groupf14[1]),
+                      Write(groupf24[1]),
+                      Write(groupf15[1]),
+                      Write(groupf25[1]),
+                      Write(groupf16[1]),
+                      Write(groupf26[1]),
+                      run_time = 0.1)
+            self.play(
+                      Write(group1[2]),
+                      Write(group2[2]),
+                      Write(groupf11[2]),
+                      Write(groupf21[2]),
+                      Write(groupf12[2]),
+                      Write(groupf22[2]),
+                      Write(groupf13[2]),
+                      Write(groupf23[2]),
+                      Write(groupf14[2]),
+                      Write(groupf24[2]),
+                      Write(groupf15[2]),
+                      Write(groupf25[2]),
+                      Write(groupf16[2]),
+                      Write(groupf26[2]),
+                      run_time = 0.1)
+            self.play(
+                      Write(group1[3]),
+                      Write(group2[3]),
+                      Write(groupf11[3]),
+                      Write(groupf21[3]),
+                      Write(groupf12[3]),
+                      Write(groupf22[3]),
+                      Write(groupf13[3]),
+                      Write(groupf23[3]),
+                      Write(groupf14[3]),
+                      Write(groupf24[3]),
+                      Write(groupf15[3]),
+                      Write(groupf25[3]),
+                      Write(groupf16[3]),
+                      Write(groupf26[3]),
+                      run_time = 0.1),
+            self.play(
+                      Write(group1[4]),
+                      Write(group2[4]),
+                      Write(groupf11[4]),
+                      Write(groupf21[4]),
+                      Write(groupf12[4]),
+                      Write(groupf22[4]),
+                      Write(groupf13[4]),
+                      Write(groupf23[4]),
+                      Write(groupf14[4]),
+                      Write(groupf24[4]),
+                      Write(groupf15[4]),
+                      Write(groupf25[4]),
+                      Write(groupf16[4]),
+                      Write(groupf26[4]),
+                      run_time = 0.1)
+            self.play(
+                      Write(group1[5]),
+                      Write(group2[5]),
+                      Write(groupf11[5]),
+                      Write(groupf21[5]),
+                      Write(groupf12[5]),
+                      Write(groupf22[5]),
+                      Write(groupf13[5]),
+                      Write(groupf23[5]),
+                      Write(groupf14[5]),
+                      Write(groupf24[5]),
+                      Write(groupf15[5]),
+                      Write(groupf25[5]),
+                      Write(groupf16[5]),
+                      Write(groupf26[5]),
+                      run_time = 0.1)
+            self.play(
+                      Write(group1[6]),
+                      Write(group2[6]),
+                      Write(groupf11[6]),
+                      Write(groupf21[6]),
+                      Write(groupf12[6]),
+                      Write(groupf22[6]),
+                      Write(groupf13[6]),
+                      Write(groupf23[6]),
+                      Write(groupf14[6]),
+                      Write(groupf24[6]),
+                      Write(groupf15[6]),
+                      Write(groupf25[6]),
+                      Write(groupf16[6]),
+                      Write(groupf26[6]),
+                      run_time = 0.1
+            )
+            i += 1
+
+            self.play(Unwrite(group_final), Unwrite(cube))
+            self.wait()
+
+
+
 
