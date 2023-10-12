@@ -436,7 +436,75 @@ class CubeAlgo(ThreeDScene):
             
             self.remove(group_final)
 
-            group_final.set_color([TEAL_B, MAROON_A])
+            if i % 2 == 0: 
+
+                VGroup(groupf11, groupf13, groupf14, groupf16, 
+                       groupf21, groupf23, groupf24, groupf26
+                ).set_color([TEAL_B])
+
+                VGroup(groupf12, group1, groupf15, 
+                       groupf22, group2, groupf25
+                ).set_color([MAROON_A])
+
+            else: 
+                VGroup(groupf11, groupf13, groupf14, groupf16,
+                       groupf21, groupf23, groupf24, groupf26
+                ).set_color([MAROON_A])
+
+                VGroup(groupf12, group1, groupf15,
+                       groupf22, group2, groupf25
+                ).set_color([TEAL_B])
+
+
+                """
+                for j in np.arange(0, 6, 2):
+
+                    group_t = VGroup(group1[j],
+                                     group2[j],
+                                     groupf11[j],
+                                     groupf21[j],
+                                     groupf12[j],
+                                     groupf22[j],
+                                     groupf13[j],
+                                     groupf23[j],
+                                     groupf14[j],
+                                     groupf24[j],
+                                     groupf15[j],
+                                     groupf25[j],
+                                     groupf16[j],
+                                     groupf26[j]
+                                ).set_color([MAROON_B])
+                    group_m = VGroup(group1[j+1],
+                                     group2[j+1],
+                                     groupf11[j+1],
+                                     groupf21[j+1],
+                                     groupf12[j+1],
+                                     groupf22[j+1],
+                                     groupf13[j+1],
+                                     groupf23[j+1],
+                                     groupf14[j+1],
+                                     groupf24[j+1],
+                                     groupf15[j+1],
+                                     groupf25[j+1],
+                                     groupf16[j+1],
+                                     groupf26[j+1]
+                                ).set_color([TEAL_B])
+                    group6 = VGroup(group1[6],
+                                     group2[6],
+                                     groupf11[6],
+                                     groupf21[6],
+                                     groupf12[6],
+                                     groupf22[6],
+                                     groupf13[6],
+                                     groupf23[6],
+                                     groupf14[6],
+                                     groupf24[6],
+                                     groupf15[6],
+                                     groupf25[6],
+                                     groupf16[6],
+                                     groupf26[6]
+                                ).set_color([MAROON_B])
+                    """
 
             self.play(FadeIn(group1[0]), 
                       FadeIn(group2[0]),
