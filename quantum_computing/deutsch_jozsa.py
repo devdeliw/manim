@@ -175,6 +175,7 @@ class Efficient(ThreeDScene):
 
         self.wait(2)
 
+
 class Efficiency(Scene):
     def construct(self):
 
@@ -200,7 +201,7 @@ class Efficiency(Scene):
         vgrl1.add(*[Line(start = [-1.5, i, 0], end = [-0.5, i, 0]) for i in np.arange(-6, 5, 1)])
         vgrd1.add(*[Line(start = [-0.5, i+0.5, 0], end = [0, i, 0]) for i in np.arange(-6.5, 4.5, 1)])
         vge1.add(*[Line(start = [0, i, 0], end = [0.5, i, 0]) for i in np.arange(-6.5, 4.5, 1)])
-        
+
         vgs2.add(*[Line(start = [-4, i, 0], end = [-3.5, i, 0]) for i in np.arange(-5.5, 5.5, 1)])
         vgld2.add(*[Line(start = [-3.5, i, 0], end = [-3, i+0.5, 0]) for i in np.arange(-5.5, 5.5, 1)])
         vgll2.add(*[Line(start = [-3, i, 0], end = [-2, i, 0]) for i in np.arange(-5, 6, 1)])
@@ -208,7 +209,7 @@ class Efficiency(Scene):
         vgrl2.add(*[Line(start = [-1.5, i, 0], end = [-0.5, i, 0]) for i in np.arange(-4.5, 6.5, 1)])
         vgrd2.add(*[Line(start = [-0.5, i, 0], end = [0, i+0.5, 0]) for i in np.arange(-4.5, 6.5, 1)])
         vge2.add(*[Line(start = [0, i, 0], end = [0.5, i, 0]) for i in np.arange(-4, 7, 1)])
-        
+
         vg = VGroup(vgs1, vgld1, vgll1, vgmd1, vgrl1, vgrd1, vge1,
                     vgs2, vgld2, vgll2, vgmd2, vgrl2, vgrd2, vge2
             )
@@ -273,7 +274,6 @@ class Efficiency(Scene):
         self.play(Write(vg.scale(1.5).shift(LEFT*3).set_color([GRAY_D, GRAY_C])), run_time = 2)
         self.wait(2)
         self.play(FadeOut(vg))
-
 
 class CubeAlgo(ThreeDScene):
     def construct(self):
@@ -622,3 +622,446 @@ class CubeAlgo(ThreeDScene):
         
         self.play(Unwrite(cube), Unwrite(group_final))
         self.wait()
+
+class QueryModel(Scene):
+    def construct(self):
+        
+        inp = Tex(r" input ").move_to([0, 1.5, 0]).scale(0.7)
+        larrow = MathTex(r" \downharpoonleft ").move_to([0, 1, 0])
+        rect = Rectangle(height = 1, width = 2.3).set_color([TEAL_B, MAROON_A])
+        rarrow = MathTex(r" \downharpoonleft ").move_to([0, -1, 0])
+        out = Tex(r" output ").move_to([0, -1.5, 0]).scale(0.7)
+        comp = Tex(r" computation ").move_to([0, 0, 0]).scale(0.7)
+
+        trect = Rectangle(height = 1, width = 2.3).set_color([TEAL_B, MAROON_A]).move_to([-1, 1, 0])
+        inp2 = Tex(r" input ").move_to([-1, 1, 0]).scale(0.7)
+        brect = Rectangle(height = 1, width = 2.3).set_color([TEAL_B, MAROON_A]).move_to([-1, -1, 0])
+        comp2 = Tex(r" computation ").move_to([-1, -1, 0]).scale(0.7)
+
+        arr1 = MathTex(r"\upharpoonright").move_to([-2, 0, 0])
+        arr2 = MathTex(r"\upharpoonright").move_to([-1.5, 0, 0])
+        arr3 = MathTex(r"\upharpoonright").move_to([-0.25, 0, 0])
+
+        cdot = MathTex(r" \cdots").move_to([-0.75, 0, 0]).scale(0.8)
+
+        arr4 = MathTex(r"\downharpoonleft").move_to([-1.75, 0, 0])
+        arr5 = MathTex(r"\downharpoonleft").move_to([-1.25, 0, 0])
+        arr6 = MathTex(r"\downharpoonleft").move_to([0, 0, 0])
+
+        rarr = MathTex(r"\longrightarrow").move_to([0.5, -1, 0])
+        out2 = Tex(r" output ").move_to([1.5, -1, 0]).scale(0.7).set_color([TEAL_B, PINK, YELLOW])
+
+        query = Tex(r" Query Model").move_to([0, 2, 0]).scale(0.7) 
+
+        group1 = VGroup(inp, larrow, rect, rarrow, out, comp).scale(1.25)
+        group2 = VGroup(trect, inp2, brect, comp2, arr1, arr2, arr3, cdot, arr4, arr5, arr6, rarr, out2, query).scale(1.25)
+
+        self.play(Write(group1))
+        self.wait(5)
+        self.play(Unwrite(group1))
+        self.wait()
+
+        self.wait()
+
+        self.play(Write(group2))
+        self.wait(5)
+        self.play(FadeOut(group2))
+
+class QSupreme(ThreeDScene):
+    def construct(self):
+
+        nn = NeuralNetwork([
+        FeedForwardLayer(1),
+        FeedForwardLayer(8)
+            ],
+            layer_spacing=3,
+        )
+
+        nn2 = NeuralNetwork([
+            FeedForwardLayer(4), 
+            FeedForwardLayer(8)
+            ],
+            layer_spacing = 3, 
+        )
+
+        nn.move_to([0,-1.5, 0])
+        nn2.move_to([0, 1.5, 0])
+        self.add(nn, nn2)
+        self.play(
+            make_neural_network_dropout_animation(
+                nn, dropout_rate=0.25, do_forward_pass=True
+            ),
+            make_neural_network_dropout_animation(
+                nn2, dropout_rate = 0.25, do_forward_pass = True
+            )
+        )
+        self.wait(1)
+
+        query = Tex(r"Single Query").move_to([0, 0, 0]).set_color([TEAL_B, PINK, YELLOW]).scale(0.9)
+
+        self.play(DrawBorderThenFill(query), run_time = 1)
+
+        self.wait(2)
+
+        self.play(Unwrite(query))
+
+        self.wait(1)
+
+
+class Binary(Scene):
+    def construct(self):
+
+        binary = MathTex(r" \Sigma", r" = \{ 0, \; 1 \}").move_to([0, 1, 0])
+        binary[0].set_color([TEAL_B, PINK, YELLOW]).scale(1.1).shift(DOWN*0.05)
+        func = MathTex(r" f \, : \, \Sigma^n \rightarrow \Sigma^m")
+
+        self.play(Write(binary)) 
+        self.wait(4)
+        self.play(Write(func))
+        self.wait(2)
+
+        self.play(FadeOut(binary), func.animate.shift(UP*2))
+
+        def_n = Tex(r" if $n = 2$ and $m = 1$,").move_to([-2, 0, 0]).scale(0.8)
+        func2 = MathTex(r" f \, : \, \Sigma^2 \rightarrow \Sigma").move_to([0, 2, 0])
+
+        b1 = MathTex(r"01").move_to([-1, -1, 0])
+        b1r = SurroundingRectangle(b1).set_color([TEAL_B, MAROON_A])
+        b2 = MathTex(r"10").move_to([-1, -1.7, 0])
+        b2r = SurroundingRectangle(b2).set_color([TEAL_B, MAROON_A])
+
+        a1 = Line(start =  [-0.6, -1, 0], end = [1.2, -1.4, 0])
+        a2 = Line(start =  [-0.6, -1.7, 0], end = [1.2, -1.4, 0])
+
+        fb1 = MathTex(r"0").move_to([1.5, -1.4, 0]).set_color([TEAL_B, PINK, YELLOW])
+        fb1r = SurroundingRectangle(fb1).set_color([TEAL_B, PINK, YELLOW])
+        fb2 = MathTex(r"1").move_to([1.5, -1.4, 0]).set_color([TEAL_B, PINK, YELLOW])
+        fb3 = MathTex(r"0").move_to([1.5, -1.4, 0]).set_color([TEAL_B, PINK, YELLOW])
+
+
+
+        self.wait()
+
+        self.play(Write(def_n))
+        self.wait(1)
+        self.play(Transform(func, func2))
+        self.wait(2)
+        self.play(Write(b1), Write(b1r), Write(b2), Write(b2r))
+        self.wait()
+        self.play(Write(a1), Write(a2), Write(fb1), Write(fb1r))
+        self.wait()
+        self.play(Transform(fb1, fb2))
+        self.wait()
+        self.play(Transform(fb1, fb3))
+
+        self.wait()
+
+        def_n2 = Tex(r" if $n = 3$ and $m = 1$,").move_to([-2, 0, 0]).scale(0.8)
+        func3 = MathTex(r" f \, : \, \Sigma^3 \rightarrow \Sigma").move_to([0, 2, 0])
+
+        b12 = MathTex(r"000").move_to([-1.5, -1, 0])
+        b1r2 = SurroundingRectangle(b12).set_color([MAROON_A, TEAL_B])
+        b22 = MathTex(r"001").move_to([-1.5, -1.7, 0])
+        b2r2 = SurroundingRectangle(b22).set_color([MAROON_A, TEAL_B])
+
+        vdots = MathTex(r"\vdots").move_to([-1.5, -2.5, 0]) 
+
+        a12 = Line(start =  [-0.9, -1, 0], end = [1.1, -1.7, 0])
+        a22 = Line(start =  [-0.9, -1.7, 0], end = [1.1, -1.7, 0])
+        a32 = Line(start = [-0.9, -2.5, 0], end = [1.1, -1.7, 0 ])
+
+        fb12 = MathTex(r"0").move_to([1.5, -1.7, 0]).set_color([TEAL_B, PINK, YELLOW])
+        fb12r = SurroundingRectangle(fb12).set_color([TEAL_B, PINK, YELLOW])
+        fb22 = MathTex(r"1").move_to([1.5, -1.7, 0]).set_color([TEAL_B, PINK, YELLOW])
+        fb32 = MathTex(r"0").move_to([1.5, -1.7, 0]).set_color([TEAL_B, PINK, YELLOW])
+
+        self.play(Unwrite(b1), 
+                  Unwrite(b1r), 
+                  Unwrite(b2), 
+                  Unwrite(b2r),
+                  Unwrite(a1),
+                  Unwrite(a2), 
+                  Unwrite(fb1), 
+                  Unwrite(fb1r)
+        )
+
+        self.wait(1)
+
+        self.play(Transform(func, func3), 
+                  Transform(def_n, def_n2),
+        )
+
+        self.play(Write(b12), 
+                  Write(b1r2), 
+                  Write(b22), 
+                  Write(b2r2), 
+                  Write(vdots)
+        )
+
+        self.wait()
+
+        self.play(Write(a12), 
+                  Write(a22), 
+                  Write(a32), 
+                  Write(fb12), 
+                  Write(fb12r)
+        )
+
+        self.wait()
+
+        self.play(Transform(fb12, fb22))
+        self.wait()
+        self.play(Transform(fb12, fb32))
+
+        self.wait()
+
+        self.play(Unwrite(VGroup(func, def_n, b12, b1r2, b22, b2r2, vdots, a12, a22, a32, fb12, fb12r)))
+
+        self.wait()
+
+class Examples(Scene):
+    def construct(self):
+        
+        title = Tex(r"OR").to_edge(UL).set_color([TEAL_B, MAROON_A])
+
+        func = MathTex(r" f \, : \, \Sigma^n \rightarrow \Sigma").move_to([0, 2, 0])
+
+        if1 = MathTex(r" \text{If } \exists \, x \in \Sigma^n \, : \,", r"f(x) = 1,").move_to([-2, 0.5, 0])
+        if1[1].set_color([YELLOW])
+        if2 = MathTex(r" \text{If }", r"\nexists", r"\, x \in \Sigma^n \, : \,", r"f(x) = 1,").move_to([-2, 0.5, 0])
+        if2[3].set_color([YELLOW])
+        if2[1].set_color([TEAL_B, MAROON_A])
+
+
+        sigma_n = MathTex(r" \Sigma^n ").move_to([-1.5, -1, 0])
+        sigma_nrect = SurroundingRectangle(sigma_n).set_color([WHITE])
+
+        f = MathTex(r"f").set_color([TEAL_B, MAROON_A]).move_to([0, -1, 0])
+        frect = SurroundingRectangle(f).set_color([MAROON_A, TEAL_B])
+
+        arr1 = MathTex(r" \rightarrow ").move_to([-0.75, -1, 0])
+        arr2 = MathTex(r" \rightarrow ").move_to([0.9, -1, 0])
+
+        out1 = MathTex(r"1").set_color([TEAL_B, PINK, YELLOW]).move_to([1.5, -1, 0])
+        out1rect = SurroundingRectangle(out1).set_color([TEAL_B, PINK, YELLOW])
+
+        out2 = MathTex(r"0").set_color([TEAL_B, PINK, YELLOW]).move_to([1.5, -1, 0])
+
+        VGroup(sigma_n, f, out1, out2, sigma_nrect, frect, out1rect).scale(1.2)
+
+        self.play(Write(title))
+        self.wait(1)
+
+        self.play(Write(func), run_time = 2)
+
+        self.wait(2)
+
+        self.play(Write(if1))
+
+        self.wait(1)
+
+        self.play(Write(sigma_n), Write(sigma_nrect), Write(f), Write(frect), 
+                  Write(arr1), Write(arr2), Write(out1), Write(out1rect), run_time = 2
+        )
+
+        self.wait(4)
+
+        self.play(ReplacementTransform(if1, if2)
+        ) 
+        self.wait()
+        self.play(Transform(out1, out2)
+        )
+
+        self.wait(4)
+
+        self.play(FadeOut(VGroup(sigma_n, sigma_nrect, f, frect,
+                                 arr1, arr2, out1, out1rect, 
+                                 if2, func, title))
+        )
+        self.wait()
+
+        title = Tex(r"XOR / Parity").to_edge(UL).set_color([TEAL_B, MAROON_A])
+
+        func = MathTex(r" f \, : \, \Sigma^n \rightarrow \Sigma").move_to([0, 2, 0])
+
+        if1 = MathTex(r" \text{If } \# \, x \in \Sigma^n \, : \, f(x) = 1 ", r"\text{ is even,}").move_to([-2, 0.5, 0])
+        if1[1].set_color([YELLOW])
+        if2 = MathTex(r" \text{If } \# \, x \in \Sigma^n \, : \, f(x) = 1 ", r"\text{ is odd,}").move_to([-2, 0.5, 0])
+        if2[1].set_color([YELLOW])
+
+
+        sigma_n = MathTex(r" \Sigma^n ").move_to([-1.5, -1, 0])
+        sigma_nrect = SurroundingRectangle(sigma_n).set_color([WHITE])
+
+        f = MathTex(r"f").set_color([TEAL_B, MAROON_A]).move_to([0, -1, 0])
+        frect = SurroundingRectangle(f).set_color([MAROON_A, TEAL_B])
+
+        arr1 = MathTex(r" \rightarrow ").move_to([-0.75, -1, 0])
+        arr2 = MathTex(r" \rightarrow ").move_to([0.9, -1, 0])
+
+        out1 = MathTex(r"0").set_color([TEAL_B, PINK, YELLOW]).move_to([1.5, -1, 0])
+        out1rect = SurroundingRectangle(out1).set_color([TEAL_B, PINK, YELLOW])
+
+        out2 = MathTex(r"1").set_color([TEAL_B, PINK, YELLOW]).move_to([1.5, -1, 0])
+
+        VGroup(sigma_n, f, out1, out2, sigma_nrect, frect, out1rect).scale(1.2)
+
+        self.wait()
+        self.play(Write(title))
+        self.wait(1)
+
+        self.play(Write(func), run_time = 2)
+
+        self.wait(2)
+
+        self.play(Write(if1))
+
+        self.wait(1)
+
+        self.play(Write(sigma_n), Write(sigma_nrect), Write(f), Write(frect),
+                  Write(arr1), Write(arr2), Write(out1), Write(out1rect), run_time = 2
+        )
+
+        self.wait(4)
+
+        self.play(ReplacementTransform(if1, if2)
+        )
+        self.wait()
+        self.play(Transform(out1, out2)
+        )
+
+        self.wait(4)
+
+        self.play(Unwrite(VGroup(sigma_n, sigma_nrect, f, frect,
+                                 arr1, arr2, out1, out1rect,
+                                 if2, func, title))
+        )
+        self.wait()
+
+
+class Queries(ThreeDScene):
+    def construct(self): 
+
+        axes = ThreeDAxes(
+            x_range = (-10, 10, 1), 
+            y_range = (-10, 10, 1), 
+            z_range = (-10, 10, 1), 
+            x_length = 10, 
+            y_length = 10, 
+            z_length = 10
+        )
+
+        labels = axes.get_axis_labels(Tex("x"), Tex("y"), Tex("z"))
+
+        self.set_camera_orientation(
+            phi = 75*DEGREES,
+            theta = 45*DEGREES, 
+            distance = 3
+        )
+
+        dots = VGroup()
+        dots1 = VGroup()
+        dots2 = VGroup()
+        dots3 = VGroup()
+        dots4 = VGroup()
+        dots5 = VGroup()
+        dots6 = VGroup()
+        dots7 = VGroup()
+
+
+        dots.add(*[Dot3D([5, i, -3], radius = 0.15, resolution = (3,3), fill_opacity = 0.02) for i in range(5, -5, -1)])
+        dots.set_color([TEAL_B, MAROON_A])
+        dots1.add(*[Dot3D([5, i, -2], radius = 0.15, resolution = (3,3), fill_opacity = 0.02) for i in range(5, -5, -1)])
+        dots1.set_color([TEAL_B, MAROON_A])
+        dots2.add(*[Dot3D([5, i, -1], radius = 0.15, resolution = (3,3), fill_opacity = 0.02) for i in range(5, -5, -1)])
+        dots2.set_color([TEAL_B, MAROON_A])
+        dots3.add(*[Dot3D([5, i, 0], radius = 0.15, resolution = (3,3), fill_opacity = 0.02) for i in range(5, -5, -1)])
+        dots3.set_color([TEAL_B, MAROON_A])
+        dots4.add(*[Dot3D([5, i, 1], radius = 0.15, resolution = (3,3), fill_opacity = 0.02) for i in range(5, -5, -1)])
+        dots4.set_color([TEAL_B, MAROON_A])
+        dots5.add(*[Dot3D([5, i, 2], radius = 0.15, resolution = (3,3), fill_opacity = 0.02) for i in range(5, -5, -1)])
+        dots5.set_color([TEAL_B, MAROON_A])
+        dots6.add(*[Dot3D([5, i, 3], radius = 0.15, resolution = (3,3), fill_opacity = 0.02) for i in range(5, -5, -1)])
+        dots6.set_color([TEAL_B, MAROON_A])
+        dots7.add(*[Dot3D([5, i, 4], radius = 0.15, resolution = (3,3), fill_opacity = 0.02) for i in range(5, -5, -1)])
+        dots7.set_color([TEAL_B, MAROON_A])
+
+
+        self.begin_ambient_camera_rotation(rate = 0.2)
+        self.play(Write((VGroup(dots, dots1, dots2, dots3, dots4, dots5, dots6, dots7))), run_time = 2)
+
+        cube = Cube(side_length = 2, fill_opacity = 0.15, stroke_width = 3).set_color([TEAL_B, MAROON_A])
+
+        middot = Surface(
+            lambda u, v: np.array([
+            0.5 * np.cos(u) * np.cos(v),
+            0.5 * np.cos(u) * np.sin(v),
+            0.5 * np.sin(u)
+            ]), v_range=[0, TAU], u_range=[-PI / 2, PI / 2],
+            checkerboard_colors=[TEAL_B, MAROON_A], resolution=(2, 4), fill_opacity = 0.01
+        ).move_to([0, 0, 0])
+        
+
+        self.wait(4)
+        self.play(Write(cube))
+        self.wait(2)
+
+        for i in dots: 
+            self.play(Transform(i, middot), run_time = 0.2)
+            self.wait(0.2)
+        for i in dots1:
+            self.play(Transform(i, middot), run_time = 0.2)
+            self.wait(0.2)
+        for i in dots2:
+            self.play(Transform(i, middot), run_time = 0.2)
+            self.wait(0.2)
+        for i in dots3:
+            self.play(Transform(i, middot), run_time = 0.2)
+            self.wait(0.2)
+        for i in dots4:
+            self.play(Transform(i, middot), run_time = 0.2)
+            self.wait(0.2)
+        for i in dots5:
+            self.play(Transform(i, middot), run_time = 0.2)
+            self.wait(0.2)
+        for i in dots6:
+            self.play(Transform(i, middot), run_time = 0.2)
+            self.wait(0.2)
+        for i in dots7:
+            self.play(Transform(i, middot), run_time = 0.2)
+            self.wait(0.2)
+
+        self.stop_ambient_camera_rotation()
+
+        arr = Arrow3D(
+            start = np.array([2.5, 0, 0]),
+            end = np.array([, , ]),
+            resolution = , 
+            color = , 
+        )
+        
+
+
+ 
+        
+
+
+
+
+        
+    
+
+
+
+    
+
+        
+
+                
+
+
+
+
+
+
+
