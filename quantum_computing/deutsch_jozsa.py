@@ -952,13 +952,13 @@ class Queries(ThreeDScene):
         )
 
         labels = axes.get_axis_labels(Tex("x"), Tex("y"), Tex("z"))
-
+        
         self.set_camera_orientation(
             phi = 75*DEGREES,
             theta = 45*DEGREES, 
             distance = 3
         )
-
+    
         dots = VGroup()
         dots1 = VGroup()
         dots2 = VGroup()
@@ -988,58 +988,141 @@ class Queries(ThreeDScene):
 
 
         self.begin_ambient_camera_rotation(rate = 0.2)
+
         self.play(Write((VGroup(dots, dots1, dots2, dots3, dots4, dots5, dots6, dots7))), run_time = 2)
-
+        self.wait(4)
+    
         cube = Cube(side_length = 2, fill_opacity = 0.15, stroke_width = 3).set_color([TEAL_B, MAROON_A])
+        cube2 = Cube(side_length = 2, fill_opacity = 0.15, stroke_width = 3).set_color([TEAL_B, MAROON_A])
 
+        self.play(Write(cube))
+        
+        self.wait(4)
+
+        
         middot = Surface(
             lambda u, v: np.array([
             0.5 * np.cos(u) * np.cos(v),
             0.5 * np.cos(u) * np.sin(v),
             0.5 * np.sin(u)
             ]), v_range=[0, TAU], u_range=[-PI / 2, PI / 2],
-            checkerboard_colors=[TEAL_B, MAROON_A], resolution=(2, 4), fill_opacity = 0.01
+            checkerboard_colors=[TEAL_B, MAROON_A], resolution=(3, 6), fill_opacity = 0.01
         ).move_to([0, 0, 0])
         
+    
+    
+        for i in dots: 
+            self.play(Transform(i, middot), run_time = 0.1)
+            self.wait(0.1)
+        for i in dots1:
+            self.play(Transform(i, middot), run_time = 0.1)
+            self.wait(0.1)
+        for i in dots2:
+            self.play(Transform(i, middot), run_time = 0.1)
+            self.wait(0.1)
+        for i in dots3:
+            self.play(Transform(i, middot), run_time = 0.1)
+            self.wait(0.1)
+        for i in dots4:
+            self.play(Transform(i, middot), run_time = 0.1)
+            self.wait(0.1)
+        for i in dots5:
+            self.play(Transform(i, middot), run_time = 0.1)
+            self.wait(0.1)
+        for i in dots6:
+            self.play(Transform(i, middot), run_time = 0.1)
+            self.wait(0.1)
+        for i in dots7:
+            self.play(Transform(i, middot), run_time = 0.1)
+            self.wait(0.1)
 
-        self.wait(4)
-        self.play(Write(cube))
+        cubef = Cube(side_length = 1, fill_opacity = 0.15, 
+                     stroke_width = 3).set_color([PINK, YELLOW]).move_to([-5, 0, 0])
+
+        enddot = Surface(
+            lambda u, v: np.array([
+            0.25 * np.cos(u) * np.cos(v),
+            0.25 * np.cos(u) * np.sin(v),
+            0.25 * np.sin(u)
+            ]), v_range=[0, TAU], u_range=[-PI / 2, PI / 2],
+            checkerboard_colors=[PINK, YELLOW], resolution=(3, 6), fill_opacity = 0.01
+        ).move_to([-5, 0, 0])
+
+        line1 = Line3D([-1,1,1], [-4.5, 0.5, 0.5]).set_color([TEAL_B, MAROON_A])
+        line2 = Line3D([-1,-1,1], [-4.5, -0.5, 0.5]).set_color([TEAL_B, MAROON_A])
+        line3 = Line3D([-1, 1, -1], [-4.5, 0.5, -0.5]).set_color([TEAL_B, MAROON_A])
+        line4 = Line3D([-1, -1, -1], [-4.5, -0.5, -0.5]).set_color([TEAL_B, MAROON_A])
+
         self.wait(2)
 
-        for i in dots: 
-            self.play(Transform(i, middot), run_time = 0.2)
-            self.wait(0.2)
-        for i in dots1:
-            self.play(Transform(i, middot), run_time = 0.2)
-            self.wait(0.2)
-        for i in dots2:
-            self.play(Transform(i, middot), run_time = 0.2)
-            self.wait(0.2)
-        for i in dots3:
-            self.play(Transform(i, middot), run_time = 0.2)
-            self.wait(0.2)
-        for i in dots4:
-            self.play(Transform(i, middot), run_time = 0.2)
-            self.wait(0.2)
-        for i in dots5:
-            self.play(Transform(i, middot), run_time = 0.2)
-            self.wait(0.2)
-        for i in dots6:
-            self.play(Transform(i, middot), run_time = 0.2)
-            self.wait(0.2)
-        for i in dots7:
-            self.play(Transform(i, middot), run_time = 0.2)
-            self.wait(0.2)
+        self.play(Write(VGroup(line1, line2, line3, line4)), Transform(middot, enddot), ReplacementTransform(cube2, cubef), run_time = 3)
+
+        self.wait(8)
+
+        self.play(Unwrite(VGroup(line1, line2, line3, line4, middot, enddot, cubef, cube)), run_time =  2)
+
+        self.wait()
 
         self.stop_ambient_camera_rotation()
-
-        arr = Arrow3D(
-            start = np.array([2.5, 0, 0]),
-            end = np.array([, , ]),
-            resolution = , 
-            color = , 
-        )
         
+
+class UnitaryGates(Scene):
+    def construct(self):
+        
+        x = MathTex(r"|x\rangle").move_to([-3.5, 1.5, 0]).scale(1.2)
+        x2 = MathTex(r"|x\rangle").move_to([3.65, 1.5, 0]).scale(1.2)
+        y = MathTex(r"|y\rangle").move_to([-3.5, -1.5, 0]).scale(1.2) 
+        y2 = MathTex(r"|y \oplus f(x) \rangle").move_to([4.55, -1.5, 0]).scale(1.2)
+        Uf = MathTex(r"U_f").scale(1.2)
+        rect = Rectangle(height = 5, width = 3, fill_opacity = 0.4, stroke_width = 3).set_color([TEAL_B, MAROON_A])
+
+        line1 = Line([-3, 1.6, 0], [-1.5, 1.6, 0])
+        line2 = Line([-3, 1.4, 0], [-1.5, 1.4, 0])
+        line3 = Line([-3, -1.6, 0], [-1.5, -1.6, 0])
+        line4 = Line([-3, -1.4, 0], [-1.5, -1.4, 0])
+
+        lines1 = VGroup(line1, line2, line3, line4)
+
+        line11 = Line([1.5, 1.6, 0], [3.1, 1.6, 0])
+        line22 = Line([1.5, 1.4, 0], [3.1, 1.4, 0])
+        line33 = Line([1.5, -1.6, 0], [3.1, -1.6, 0])
+        line44 = Line([1.5, -1.4, 0], [3.1, -1.4, 0])
+
+        lines2 = VGroup(line11, line22, line33, line44)
+
+        groupf = VGroup(x, x2, y, y2, Uf, rect, lines1, lines2)
+        gate = groupf.copy().move_to([0, 1, 0]).scale(0.8)
+
+        self.play(Write(VGroup(x, y, rect, x2, y2, lines1, lines2)), run_time = 2)
+
+        xyin = MathTex(r" x \in \Sigma^n \quad \Big| \quad y \in \Sigma^m").move_to([0, -2, 0])
+        xor = MathTex(r" \text{XOR : } y \oplus f(x)").move_to([0, -3, 0])
+        xorex = MathTex(r" 001 \oplus 101 = 100").move_to([0, -3, 0])
+
+        self.wait(4)
+        self.play(Write(Uf))
+
+        srect = SurroundingRectangle(gate).set_color([TEAL_B, MAROON_A])
+
+        self.wait(6)
+        self.play(ReplacementTransform(groupf, gate), Write(srect))
+
+        self.wait(1)
+
+        self.play(Write(xyin))
+        self.wait()
+        self.play(Write(xor))
+        self.wait(3)
+        self.play(Transform(xor, xorex))
+        self.wait(4) 
+
+        self.play(Unwrite(VGroup(gate, xyin, xor, xorex, srect)))
+        self.wait()
+
+        
+
+        
+
 
 
  
