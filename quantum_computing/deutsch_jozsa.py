@@ -1369,13 +1369,34 @@ class DeutschAlgo(Scene):
         zer = MathTex(r"0").move_to([6.6, 2.3, 0])
         on = MathTex(r"1").move_to([6.6, 1.8, 0])
 
+        pi1line = DashedLine([-2, 2.75, 0], [-2, -2.75, 0])
+        pi1 = MathTex(r" | \pi_1 \rangle").move_to([-2, -3.2, 0])
+        pi2line = DashedLine([2, 2.75, 0], [2, -2.75, 0])
+        pi2 = MathTex(r" | \pi_2 \rangle").move_to([2, -3.2, 0])
+        pi3line = DashedLine([4, 2.75, 0], [4, -2.75, 0])
+        pi3 = MathTex(r" | \pi_3 \rangle").move_to([4, -3.2, 0])
+
+        pis = VGroup(pi1line, pi1, pi2line, pi2, pi3line, pi3)
+
         rectangle = SurroundingRectangle(VGroup(zer, on)).set_color([TEAL_B, MAROON_A])
 
         groupf = VGroup(lines, group, zer, on, rectangle).move_to([0, 0, 0])
+        groupff = VGroup(lines, group, zer, on, rectangle, pis).move_to([0, 0, 0])
 
         self.play(Write(group), run_time = 5)
         self.play(Write(lines), Write(zer), Write(on), Write(rectangle))
-        self.wait(2)
+        self.wait(4)
+
+        self.play(groupf.animate.scale(0.7).to_edge(UL))
+        self.wait(1)
+        self.play(Write(pis.scale(0.7).to_edge(UL).shift(RIGHT*2)))
+
+        self.wait(3)
+
+
+
+
+
 
 
         

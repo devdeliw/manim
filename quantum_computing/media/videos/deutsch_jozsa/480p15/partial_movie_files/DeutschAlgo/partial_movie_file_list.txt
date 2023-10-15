@@ -1,0 +1,6 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/480p15/partial_movie_files/DeutschAlgo/4266129954_3831761144_223132457.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/480p15/partial_movie_files/DeutschAlgo/1442284246_1988399943_827233371.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/480p15/partial_movie_files/DeutschAlgo/1442284246_125286499_2411203034.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/480p15/partial_movie_files/DeutschAlgo/1442284246_1253747982_4067559736.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/480p15/partial_movie_files/DeutschAlgo/1442284246_1341773651_1811888076.mp4'
