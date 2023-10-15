@@ -1119,6 +1119,274 @@ class UnitaryGates(Scene):
         self.play(Unwrite(VGroup(gate, xyin, xor, xorex, srect)))
         self.wait()
 
+
+class Deutsch(Scene):
+    def construct(self):
+        title = Tex(r" Deutsch's Algorithm ").set_color([TEAL_B, MAROON_A]).to_edge(UL)
+
+        func = MathTex(r" f \, : \, \Sigma^n \rightarrow \Sigma^ ").move_to([0, 2, 0])
+        func2 = MathTex(r" f \, : \, \Sigma \rightarrow \Sigma").move_to([0, 2, 0])
+        one2one = Tex(r" $f \, : \,$ 1 bit $\rightarrow$ 1 bit ").move_to([0, 2, 0])
+
+        self.play(Write(title))
+        self.wait()
+        self.play(Write(func))
+        self.wait(2)
+        self.play(Transform(func, func2))
+        self.wait(2)
+        self.play(Transform(func, one2one))
+
+        self.wait(3)
+
+        a2 = MathTex(r"a").scale(0.8).move_to([-1.2, 1, 0])
+        
+        a3 = a2.copy().move_to([0.8, 1, 0])
+        a4 = a2.copy().move_to([2.8, 1, 0])
+        a1 = a2.copy().move_to([-3.2, 1, 0])
+
+        f2 = MathTex(r"f_2(a)").scale(0.8).move_to([-0.3, 1, 0])
+        f3 = MathTex(r"f_3(a)").scale(0.8).move_to([1.7, 1, 0])
+        f4 = MathTex(r"f_4(a)").scale(0.8).move_to([3.7, 1, 0])
+        f1 = MathTex(r"f_1(a)").scale(0.8).move_to([-2.3, 1, 0])
+
+        zero = MathTex(r"0").scale(0.8).move_to([-3.2, 0.25, 0])
+        one = MathTex(r"1").scale(0.8).move_to([-3.2, -0.25, 0])
+
+        zero2 = zero.copy().shift(RIGHT*2)
+        zero3 = zero.copy().shift(RIGHT*4)
+        zero4 = zero.copy().shift(RIGHT*6)
+
+        one2 = one.copy().shift(RIGHT*2)
+        one3 = one.copy().shift(RIGHT*4)
+        one4 = one.copy().shift(RIGHT*6)
+
+        num = VGroup(one, one2, one3, one4, zero, zero2, zero3, zero4)
+
+        lineh1 = Line([-3.5, 0.7, 0], [-1.7, 0.7, 0]).set_color([TEAL_B, MAROON_A])
+        lineh2 = lineh1.copy().shift(RIGHT*2)
+        lineh3 = lineh1.copy().shift(RIGHT*4)
+        lineh4 = lineh1.copy().shift(RIGHT*6)
+
+        linev1 = Line([-2.9, 1.3, 0], [-2.9, -0.7, 0]).set_color([MAROON_A, TEAL_B])
+        linev2 = linev1.copy().shift(RIGHT*2)
+        linev3 = linev1.copy().shift(RIGHT*4)
+        linev4 = linev1.copy().shift(RIGHT*6)
+
+        af = VGroup(a1, a2, a3, a4, f1, f2, f3, f4)
+
+        lineh = VGroup(lineh1, lineh2, lineh3, lineh4)
+        linev = VGroup(linev1, linev2, linev3, linev4)
+
+        zer1 = zero.copy().move_to([-2.3, 0.25, 0])
+        zer2 = zer1.copy().shift(RIGHT*2)
+        zer3 = zer1.copy().shift(DOWN*0.5)
+        zer4 = zer3.copy().shift(RIGHT*4)
+
+        on1 = one.copy().move_to([-0.3, -0.25, 0])
+        on2 = on1.copy().shift(RIGHT*4)
+        on3 = one.copy().move_to([1.7, 0.25, 0])
+        on4 = on3.copy().shift(RIGHT*2)
+
+        onzer = VGroup(zer1, zer2, zer3, zer4, on1, on2, on3, on4)
+
+        group = VGroup(af, lineh, linev, num, onzer)
+
+        p1 = VGroup(zer1, zer3)
+        p2 = VGroup(zer2, on1)
+        p3 = VGroup(on3, zer4)
+        p4 = VGroup(on4, on2)
+
+        p1r = SurroundingRectangle(p1).set_color([TEAL_B, MAROON_A])
+        p2r = SurroundingRectangle(p2).set_color([TEAL_B, MAROON_A])
+        p3r = SurroundingRectangle(p3).set_color([TEAL_B, MAROON_A])
+        p4r = SurroundingRectangle(p4).set_color([TEAL_B, MAROON_A])
+
+        rects = VGroup(p1r, p2r, p3r, p4r) 
+        groupf = VGroup(group, rects).move_to([0, -0.5, 0]).scale(1.2)
+
+        self.play(Write(groupf), run_time = 2)
+
+        g1 = VGroup(a1, f1)
+        g2 = VGroup(a2, f2) 
+        g3 = VGroup(a3, f3)
+        g4 = VGroup(a4, f4)
+
+        b1 = Brace(g1)
+        b23 = Brace(VGroup(g2, g3))
+        b4 = Brace(g4)
+
+        self.wait(5)
+
+        self.play(Write(VGroup(b1, b23, b4).shift(DOWN*1.7)))
+
+        constant = MathTex(r"\textit{constant}").move_to([-3.55, -1.8, 0]).scale(0.9)
+        constant2 = constant.copy().shift(RIGHT*7.2)
+        balanced = MathTex(r"\textit{balanced}").move_to([0, -1.8, 0]).scale(0.9)
+
+        conbal = VGroup(constant, constant2, balanced).shift(DOWN*0.5)
+
+
+        self.play(Write(constant), Write(constant2), Write(balanced))
+
+        self.wait(5)
+
+        self.play(Unwrite(VGroup(groupf, b1, b23, b4, constant, constant2, balanced, func, title)))
+
+        self.wait()
+
+
+class DeutschProb(Scene):
+    def construct(self):
+
+        vline = Line(start =  [-1, -1, 0], end = [-1, 1, 0]).set_color([TEAL_B, MAROON_A])
+
+        problem = Tex(r"\textbf{Deutsch's Problem}").move_to([1.05, 0.6, 0]).scale(0.8)
+        inp = Tex(r" Input: a function $f \, : \, \{0, 1\} \rightarrow \{0, 1\}$").move_to([2.4, 0, 0]).scale(0.8)
+        out = Tex(r" Output: 0 if $f$ is constant, 1 if $f$ is balanced").move_to([3.05, -0.6, 0]).scale(0.8)
+
+        prob = VGroup(vline, problem, inp, out).move_to([0, 0, 0])
+
+        self.play(Write(vline))
+        self.wait()
+        self.play(Write(problem))
+        self.wait(1)
+        self.play(Write(inp))
+        self.wait(2)
+        self.play(Write(out))
+
+        self.wait(4)
+
+        self.play(prob.animate.shift(UL*2))
+
+        rect = SurroundingRectangle(prob).set_color([TEAL_B, MAROON_A])
+
+        self.play(Write(rect))
+
+        self.wait()
+
+        func = Tex("function").scale(0.7).move_to([-1.5, 0.3, 0])
+        inp = Tex(r"`$f(0)f(1)$'").scale(0.7).move_to([0.5, 0.3, 0])
+        out = Tex("output").scale(0.7).move_to([2.5, 0.3, 0])
+        hline = Line([-2.5, 0, 0], [3.6, 0, 0]).set_color([TEAL_B, MAROON_A])
+        f1 = MathTex(r"f_1").move_to([-1.5, -0.5, 0])
+        f2 = MathTex(r"f_2").move_to([-1.5, -1.1, 0])
+        f3 = MathTex(r"f_3").move_to([-1.5, -1.7, 0])
+        f4 = MathTex(r"f_4").move_to([-1.5, -2.3, 0])
+
+        f = VGroup(f1, f2, f3, f4)
+
+        str1 = Tex(r"`$00$'").move_to([0.5, -0.5, 0])
+        str2 = Tex(r"`$01$'").move_to([0.5, -1.1, 0])
+        str3 = Tex(r"`$10$'").move_to([0.5, -1.7, 0])
+        str4 = Tex(r"`$11$'").move_to([0.5, -2.3, 0])
+
+        string = VGroup(str1, str2, str3, str4)
+
+        out0 = MathTex(r"0").move_to([2.5, -0.5, 0])
+        out01 = out0.copy().move_to([2.5, -2.3, 0])
+        out1 = MathTex(r"1").move_to([2.5, -1.1, 0])
+        out11 = out1.copy().move_to([2.5, -1.7, 0])
+
+        ans = VGroup(out0, out01, out1, out11).set_color([TEAL_B, MAROON_A]) 
+
+
+
+        VGroup(func, inp, out, hline, f, string, ans).move_to([0, -1.5, 0])
+
+        self.play(Write(VGroup(func, inp, out, hline)))
+        self.wait(2)
+
+        self.play(Write(f), Write(string))
+        self.wait(2)
+
+        self.play(Write(ans))
+
+        self.wait(3)
+
+        funcdef = VGroup(f, string, ans, func, inp, out, hline)
+
+        self.play(funcdef.animate.shift(LEFT*2.9))
+        rect2 = SurroundingRectangle(funcdef).set_color([TEAL_B, MAROON_A])
+        self.play(Write(rect2))
+
+        xor = MathTex(r" f(0) \oplus f(1)").move_to([3.9, -1.5, 0])
+        xor2 = Tex(r" XOR ").move_to([3.93, -0.8, 0])
+
+        xors = VGroup(xor, xor2)
+        xorrect = SurroundingRectangle(xors).set_color([TEAL_B, MAROON_A])
+
+        xorsf = VGroup(xors, xorrect).shift(LEFT*0.5)
+        xorsf.shift(DOWN*0.3)
+
+        self.wait(2)
+
+        self.play(Write(xors), Write(xorrect))
+
+        self.wait(5)
+
+        self.play(Unwrite(VGroup(xors, xorrect, rect2, funcdef, func, inp, out, hline, prob, rect)))
+        self.wait()
+
+
+class DeutschAlgo(Scene):
+    def construct(self):
+
+        zero = MathTex(r" | 0 \rangle ").move_to([-5, 2, 0])
+        one = MathTex(r" | 1 \rangle ").move_to([-5, -2, 0])
+
+        Hi1 = MathTex(r" H ").move_to([-3, 2, 0])
+        Hi1sq = Square(side_length = 1, fill_opacity = 0.2).set_color([TEAL_B, MAROON_A]).move_to([-3, 2, 0])
+        Hi2 = Hi1.copy().shift(DOWN*4)
+        Hi2sq = Hi1sq.copy().shift(DOWN*4)
+        Hio = Hi1.copy().shift(RIGHT*6)
+        Hiosq = Hi1sq.copy().shift(RIGHT*6)
+        Uf = MathTex(r" U_f ")
+        Ufrect = Rectangle(width = 3, height = 5.5, fill_opacity = 0.2).set_color([TEAL_B, PINK, YELLOW])
+
+
+        semicirc = Arc(fill_opacity=0, angle=PI, stroke_width = 3).move_to([5, 2, 0]).scale(0.3)
+        semicircsq = Hi1sq.copy().shift(RIGHT*8).set_color([PINK, YELLOW])
+        dot = Dot([5,1.84,0], radius = 0.05)
+        line = Line([5, 1.84, 0], [5.3, 2.14, 0])
+
+        group = VGroup(zero, one, Hi1, Hi1sq, 
+                       Hi2, Hi2sq, Hio, Hiosq, Uf, Ufrect, semicirc,
+                       semicircsq, dot, line
+        )
+
+        hi1uf = Line(start =  [-2.5, 2, 0], end = [-1.5, 2, 0])
+        ufhio = hi1uf.copy().shift(RIGHT*4)
+        hi2uf = hi1uf.copy().shift(DOWN*4)
+        hiom = hi1uf.copy().shift(RIGHT*6)
+        zeroh = Line(start =  [-4.5, 2, 0], end = [-3.5, 2, 0])
+        oneh = zeroh.copy().shift(DOWN*4)
+        ufend = Line(start =  [1.5, -2, 0], end = [6.2, -2, 0])
+        mend1 = Line(start = [5.5, 2.1, 0], end = [6.2, 2.1, 0])
+        mend2 = mend1.copy().shift(DOWN*0.2)
+
+        lines = VGroup(hi1uf, ufhio, hi2uf, hiom, zeroh, oneh, ufend, mend1, mend2)
+
+        zer = MathTex(r"0").move_to([6.6, 2.3, 0])
+        on = MathTex(r"1").move_to([6.6, 1.8, 0])
+
+        rectangle = SurroundingRectangle(VGroup(zer, on)).set_color([TEAL_B, MAROON_A])
+
+        groupf = VGroup(lines, group, zer, on, rectangle).move_to([0, 0, 0])
+
+        self.play(Write(group), run_time = 5)
+        self.play(Write(lines), Write(zer), Write(on), Write(rectangle))
+        self.wait(2)
+
+
+        
+
+        
+
+    
+
+
+
+        
         
 
         
