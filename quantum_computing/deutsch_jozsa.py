@@ -1387,11 +1387,243 @@ class DeutschAlgo(Scene):
         self.play(Write(lines), Write(zer), Write(on), Write(rectangle))
         self.wait(4)
 
-        self.play(groupf.animate.scale(0.7).to_edge(UL))
-        self.wait(1)
-        self.play(Write(pis.scale(0.7).to_edge(UL).shift(RIGHT*2)))
+        self.play(Write(pis.shift(LEFT*0.8)))
+        self.wait(4)
+        self.play(Unwrite(VGroup(pi2line, pi2, pi3line, pi3, Uf, Ufrect, Hio,
+                                 Hiosq, semicirc, semicircsq, dot, line, zer,
+                                 on, rectangle, mend1, mend2, ufend, ufhio, hiom)), run_time = 2)
 
-        self.wait(3)
+        self.wait(2)
+        
+        hmatrixt = MathTex(r" \begin{pmatrix} \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ \
+                          \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} \end{pmatrix} ").move_to([-0.5, 2.3, 0])
+
+        hmatrixb = hmatrixt.copy().shift(DOWN*4)
+
+        matrix0 = MathTex(r" \begin{pmatrix} 1 \\[6px] 0 \end{pmatrix} ").move_to([-6, 2.3, 0])
+        matrix1 = MathTex(r" \begin{pmatrix} 0 \\[6px] 1 \end{pmatrix} ").move_to([-6, -1.7, 0])
+
+        line1copy = VGroup(zeroh.copy(), oneh.copy(), hi1uf.copy(), hi2uf.copy())
+
+        self.play(Write(line1copy))
+
+        matrix01 = matrix0.copy().shift(RIGHT*7.5)
+        matrix11 = matrix1.copy().shift(RIGHT*7.5)
+        
+        self.wait()
+
+        self.play(Transform(zero, matrix0), Transform(one, matrix1))
+
+        self.wait()
+        self.play(Write(VGroup(hmatrixt, hmatrixb, matrix01, matrix11)))
+        self.wait()
+
+        h0out = MathTex(r" \begin{pmatrix} \frac{1}{\sqrt{2}} \\[6px] \frac{1}{\sqrt{2}} \end{pmatrix} ").move_to([-1.1, 2.3, 0])
+        h1out = MathTex(r" \begin{pmatrix} \frac{1}{\sqrt{2}} \\[6px] -\frac{1}{\sqrt{2}} \end{pmatrix} ").move_to([-1.1, -1.7, 0])
+
+        h0out1 = MathTex(r" \frac{ |0\rangle + |1\rangle }{\sqrt{2}} ").move_to([-1.1, 2.3, 0]).set_color([TEAL_B, PINK, YELLOW])
+        h1out1 = MathTex(r" \frac{ |0\rangle - |1\rangle }{\sqrt{2}} ").move_to([-1.1, -1.7, 0]).set_color([TEAL_B, PINK, YELLOW])
+
+        self.wait(2)
+        self.play(ReplacementTransform(VGroup(hmatrixt, matrix01), h0out), ReplacementTransform(VGroup(hmatrixb, matrix11), h1out))
+
+        self.wait(2)
+
+        inzero = MathTex(r" |0 \rangle ").move_to([-5.9, 2.35, 0])
+        inone = MathTex(r" |1 \rangle ").move_to([-5.9, -1.65, 0])
+
+        self.play(Transform(h0out, h0out1), Transform(h1out, h1out1),
+                  run_time = 1
+        )
+
+        self.wait()
+        
+        self.play(Transform(zero, inzero), Transform(one, inone))
+
+        self.wait(2)
+
+        grouph1 = VGroup(zero, one, h0out, h1out, zeroh, oneh, hi1uf, hi2uf, line1copy, pi1, pi1line, Hi1, Hi1sq, Hi2, Hi2sq)
+
+        self.play(grouph1.animate.scale(0.8).to_edge(LEFT))
+
+        vline = Line(start =  [-1, 10, 0], end = [-1, -10, 0])
+        self.play(Write(vline))
+
+        self.wait()
+
+
+class Bloch(ThreeDScene):
+    def construct(self): 
+        self.set_camera_orientation(
+            phi = 70*DEGREES,
+            theta = 20*DEGREES, 
+            distance = 4
+        )
+
+        bloch = Surface(
+            lambda u, v: np.array([
+            3 * np.cos(u) * np.cos(v),
+            3 * np.cos(u) * np.sin(v),
+            3 * np.sin(u)
+            ]), v_range=[0, TAU], u_range=[-PI / 2, PI / 2],
+            checkerboard_colors=[GRAY, GRAY], resolution=(32, 64), fill_opacity = 0.06
+        ).set_color([TEAL_B, PINK, YELLOW])
+
+        axes = ThreeDAxes(
+            x_range = (-8, 8, 8), 
+            y_range = (-8, 8, 8), 
+            z_range = (-7, 7, 7), 
+            x_length = 8, 
+            y_length = 8, 
+            z_length = 7
+        )
+
+        labels = axes.get_axis_labels(
+            MathTex(r"x"), MathTex(r"y"), MathTex(r"z")
+        )
+
+        self.play(Write(axes), DrawBorderThenFill(labels))
+
+
+        zeroone = Arrow3D(
+            start = np.array([0, 0, 0]),
+            end = np.array([0, 0, 3]),
+            resolution = 8,
+            color = TEAL_B
+        )
+
+        one = MathTex(r"|1\rangle").move_to([1, 0, -3.5]).scale(0.7)
+        zero = MathTex(r"|0\rangle").move_to([1, 0, 3.5]).scale(0.7)
+
+
+        self.add_fixed_orientation_mobjects(one, zero)
+
+        final = Arrow3D(
+            start = np.array([0, 0, 0]),
+            end = np.array([3, 0, 0]),
+            resolution = 8, 
+            color = YELLOW
+        )
+        
+        self.wait(2)
+        self.play(Create(bloch), run_time = 6)
+        self.play(Create(zeroone))
+ 
+        self.wait(2)
+
+        self.play(Rotate(
+                    bloch, 
+                    angle = 0.5*PI,
+                    axis = np.array([0,1,0])
+                ), Rotate(
+                    zeroone,
+                    angle = 0.5*PI, 
+                    axis = np.array([0,1,0]),
+                    about_point = ORIGIN),
+                run_time = 5
+        )
+
+        self.wait(2)
+
+        self.play(Rotate(
+                    bloch,
+                    angle = PI,
+                    axis = np.array([1,0,0])
+                ), Rotate(
+                    zeroone, 
+                    angle = PI,
+                    axis = np.array([1,0,0]), 
+                    about_point = ORIGIN), 
+                run_time = 5
+        )
+        self.wait()
+
+        self.play(Transform(zeroone, final))
+
+        finaloutput = MathTex(r" \frac{ |0\rangle + |1\rangle}{\sqrt{2}} ").move_to([-4, -4, -4])
+        self.add_fixed_in_frame_mobjects(finaloutput)
+
+        self.wait(2)
+        self.play(Write(finaloutput))
+
+        self.wait(2)
+
+        self.play(FadeOut(zeroone, finaloutput), run_time = 3)
+
+        onezero = Arrow3D(
+            start = np.array([0, 0, 0]),
+            end = np.array([0, 0, -3]),
+            resolution = 8, 
+            color = MAROON_A, 
+        )
+
+        self.wait(2)
+
+        self.play(Create(onezero))
+
+        self.wait(2)
+
+        self.play(Rotate(
+                    bloch,
+                    angle = 0.5*PI,
+                    axis = np.array([0,1,0])
+                ), Rotate(
+                    onezero,
+                    angle = 0.5*PI,
+                    axis = np.array([0,1,0]),
+                    about_point = ORIGIN),
+                run_time = 5
+        )
+
+        self.wait(2)
+
+        self.play(Rotate(
+                    bloch,
+                    angle = PI,
+                    axis = np.array([1,0,0])
+                ), Rotate(
+                    onezero,
+                    angle = PI,
+                    axis = np.array([1,0,0]),
+                    about_point = ORIGIN),
+                run_time = 5
+        )
+
+        final2 = Arrow3D(
+            start = np.array([0, 0, 0]),
+            end = np.array([-3, 0, 0]),
+            resolution = 8, 
+            color = YELLOW, 
+        )
+
+        self.wait()
+
+        self.play(Transform(onezero, final2))
+
+        finaloutput = MathTex(r" \frac{ |0\rangle + |1\rangle}{\sqrt{2}} ").move_to([4, 4, 4])
+        self.add_fixed_in_frame_mobjects(finaloutput)
+
+        self.wait(2)
+        self.play(Write(finaloutput))
+
+        self.wait(2)
+
+        self.play(FadeOut(onezero, finaloutput), run_time = 3)
+
+        self.play(Unwrite(VGroup(bloch, axes, labels, one, zero)))
+
+        self.wait()
+
+        
+
+
+
+
+        
+
+
+
+
 
 
 
