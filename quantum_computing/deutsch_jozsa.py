@@ -1449,9 +1449,91 @@ class DeutschAlgo(Scene):
         vline = Line(start =  [-1, 10, 0], end = [-1, -10, 0])
         self.play(Write(vline))
 
+
+        self.wait(70)
+
+        self.play(vline.animate.shift(RIGHT*0.3), grouph1.animate.scale(1.2).to_edge(LEFT))
+
+
+        pi1form = MathTex(r" | - \rangle | + \rangle").move_to([-3.4, -2.8, 0]).scale(0.8)
+
+        h1outminus = MathTex(r" | -\rangle").set_color([MAROON_A]).move_to([-2.3, -1.57, 0])
+        h0outplus  = MathTex(r" | + \rangle").set_color([TEAL_B]).move_to([-2.3, 2.25, 0])
+
+        self.wait(2)
+
+        self.play(ReplacementTransform(h1out, h1outminus), ReplacementTransform(h0out, h0outplus))
         self.wait()
+        
+        self.play(Transform(pi1, pi1form))
 
+        pi1form1 = MathTex(r" \frac{1}{2} (|0\rangle - |1\rangle) |0\rangle + \frac{1}{2}(|0\rangle - |1\rangle)|1\rangle").move_to([-3.7, -3, 0]).scale(0.8)
 
+        pi2form1 = MathTex(r" |\pi_2\rangle = \frac{1}{2} (|0 \oplus f(0) \rangle - |1 \oplus f(0) \rangle) |0\rangle \\ + \frac{1}{2}(|0\oplus f(1) \rangle - |1 \oplus f(1) \rangle)|1\rangle")
+
+        self.wait(3)
+
+        self.play(ReplacementTransform(pi1, pi1form1))
+
+        self.wait(2)
+
+        pi1corner = MathTex(r" |\pi_1 \rangle = \frac{1}{2} (|0\rangle - |1\rangle) |0\rangle \\ + \frac{1}{2}(|0\rangle - |1\rangle)|1\rangle").scale(0.8).move_to([1.27, 2.3, 0])
+
+        self.play(ReplacementTransform(pi1form1, pi1corner))
+
+        self.wait(2)
+
+        self.play(Unwrite(VGroup(zero, one, zeroh, oneh, hi1uf, hi2uf, line1copy, pi1line, Hi1, Hi1sq, Hi2, Hi2sq)), 
+                  h1outminus.animate.shift(LEFT*3.5), h0outplus.animate.shift(LEFT*3.5))
+
+        self.wait(2)
+        
+        Uf = MathTex(r" Uf").move_to([-3.5, 0, 0])
+        Ufrect = Rectangle(height = 5.5, width = 2.3, fill_opacity = 0.2).set_color([TEAL_B, PINK, YELLOW]).move_to([-3.5, 0, 0])
+
+        puf = Line(start =  [-5.3, 2.25, 0], end = [-4.65, 2.25, 0])
+        muf = Line(start =  [-5.3, -1.57, 0], end = [-4.65, -1.57, 0])
+
+        ufpi2t = Line(start =  [-2.35, 2.25, 0], end = [-1.15, 2.25, 0])
+        ufpi2b = Line(start = [-2.35, -1.57, 0], end = [-1.15, -1.57, 0])
+
+        pi2line = DashedLine([-1.75, 2.75, 0], [-1.75, -2.75, 0])
+        pi2 = MathTex(r" | \pi_2 \rangle").move_to([-1.75, -3.2, 0])
+
+        self.play(Write(VGroup(Uf, Ufrect, puf, muf, ufpi2t, ufpi2b, pi2line, pi2)), run_time = 3)
+
+        self.wait(5)
+
+        self.play(Write(pi2form1.move_to([2,7, 0, 0]).scale(0.8)))
+
+        pi2form2 = MathTex(r" |\pi_2\rangle = |-\rangle \left( \frac{(-1)^{f(0)} |0\rangle + (-1)^{f(1)}|1\rangle}{\sqrt{2}} \right) ").move_to([2.82, 0, 0]).scale(0.8)
+
+        self.wait(2)
+
+        self.play(ReplacementTransform(pi2form1, pi2form2))
+
+        phase = Tex(r" \textit{phase kickback} ").move_to([3, -2, 0]).set_color([TEAL_B, MAROON_A])
+
+        self.wait(8)
+
+        self.play(Write(phase))
+
+        pi2form3 = MathTex(r" |\pi_2\rangle &= (-1)^{f(0)}|0\rangle \left( \frac{|0\rangle + (-1)^{f(0)\oplus f(1)} |1\rangle}{\sqrt{2}}\right) ").move_to([3.17, 0, 0]).scale(0.8)
+
+        pi2form4 = MathTex(r" |\pi_2\rangle &= (-1)^{f(0)}|0\rangle \left( \frac{|0\rangle + (-1)^{f(0)\oplus f(1)} |1\rangle}{\sqrt{2}}\right) \\ &= (-1)^{f(0)}|-\rangle |+\rangle \; \text{ if } f(0) \oplus f(1) = 0 \\ &= (-1)^{f(0)} |-\rangle |-\rangle \; \text{ if } f(0) \oplus f(1) = 1 ").move_to([3.19, 0, 0]).scale(0.8)
+
+        self.wait(2)
+        self.play(Unwrite(phase))
+
+        self.wait(2)
+
+        self.play(ReplacementTransform(pi2form2, pi2form3)) 
+
+        self.wait(2)
+
+        self.play(ReplacementTransform(pi2form3, pi2form4))  
+
+        
 class Bloch(ThreeDScene):
     def construct(self): 
         self.set_camera_orientation(
@@ -1466,8 +1548,10 @@ class Bloch(ThreeDScene):
             3 * np.cos(u) * np.sin(v),
             3 * np.sin(u)
             ]), v_range=[0, TAU], u_range=[-PI / 2, PI / 2],
-            checkerboard_colors=[GRAY, GRAY], resolution=(32, 64), fill_opacity = 0.06
-        ).set_color([TEAL_B, PINK, YELLOW])
+            checkerboard_colors=[GRAY, GRAY], resolution=(16, 32), fill_opacity = 0.15
+        ).scale(0.7)
+
+        bloch.set_color_by_gradient(TEAL, GRAY_D, YELLOW)
 
         axes = ThreeDAxes(
             x_range = (-8, 8, 8), 
@@ -1476,40 +1560,35 @@ class Bloch(ThreeDScene):
             x_length = 8, 
             y_length = 8, 
             z_length = 7
-        )
+        ).scale(0.7)
 
-        labels = axes.get_axis_labels(
-            MathTex(r"x"), MathTex(r"y"), MathTex(r"z")
-        )
+        labels = axes.get_axis_labels(MathTex("x"), MathTex("y"), MathTex("z"))
 
-        self.play(Write(axes), DrawBorderThenFill(labels))
 
+        self.play(Write(axes), Write(labels))
 
         zeroone = Arrow3D(
             start = np.array([0, 0, 0]),
-            end = np.array([0, 0, 3]),
+            end = np.array([0, 0, 2.1]),
             resolution = 8,
-            color = TEAL_B
+            color = PURE_RED,
+
         )
 
-        one = MathTex(r"|1\rangle").move_to([1, 0, -3.5]).scale(0.7)
-        zero = MathTex(r"|0\rangle").move_to([1, 0, 3.5]).scale(0.7)
 
+        one = MathTex(r"|1\rangle").move_to([1, 0, -2.7]).scale(0.7)
+        zero = MathTex(r"|0\rangle").move_to([1, 0, 3]).scale(0.7)
 
         self.add_fixed_orientation_mobjects(one, zero)
-
-        final = Arrow3D(
-            start = np.array([0, 0, 0]),
-            end = np.array([3, 0, 0]),
-            resolution = 8, 
-            color = YELLOW
-        )
         
         self.wait(2)
+        
         self.play(Create(bloch), run_time = 6)
+        
         self.play(Create(zeroone))
  
         self.wait(2)
+        
 
         self.play(Rotate(
                     bloch, 
@@ -1522,9 +1601,9 @@ class Bloch(ThreeDScene):
                     about_point = ORIGIN),
                 run_time = 5
         )
-
+        
         self.wait(2)
-
+  
         self.play(Rotate(
                     bloch,
                     angle = PI,
@@ -1538,25 +1617,26 @@ class Bloch(ThreeDScene):
         )
         self.wait()
 
-        self.play(Transform(zeroone, final))
+        finaloutput = MathTex(r" \frac{ |0\rangle + |1\rangle}{\sqrt{2}} ").move_to([-2, -2.3, -4]).scale(0.7)
 
-        finaloutput = MathTex(r" \frac{ |0\rangle + |1\rangle}{\sqrt{2}} ").move_to([-4, -4, -4])
         self.add_fixed_in_frame_mobjects(finaloutput)
+        self.remove(finaloutput)
 
         self.wait(2)
         self.play(Write(finaloutput))
-
+        
         self.wait(2)
 
         self.play(FadeOut(zeroone, finaloutput), run_time = 3)
 
         onezero = Arrow3D(
             start = np.array([0, 0, 0]),
-            end = np.array([0, 0, -3]),
+            end = np.array([0, 0, -2.1]),
             resolution = 8, 
-            color = MAROON_A, 
+            color = PURE_BLUE, 
+            thickness = 0.01
         )
-
+ 
         self.wait(2)
 
         self.play(Create(onezero))
@@ -1589,19 +1669,10 @@ class Bloch(ThreeDScene):
                 run_time = 5
         )
 
-        final2 = Arrow3D(
-            start = np.array([0, 0, 0]),
-            end = np.array([-3, 0, 0]),
-            resolution = 8, 
-            color = YELLOW, 
-        )
 
-        self.wait()
-
-        self.play(Transform(onezero, final2))
-
-        finaloutput = MathTex(r" \frac{ |0\rangle + |1\rangle}{\sqrt{2}} ").move_to([4, 4, 4])
+        finaloutput = MathTex(r" \frac{ |0\rangle - |1\rangle}{\sqrt{2}} ").move_to([2, 2.3, 4]).scale(0.7)
         self.add_fixed_in_frame_mobjects(finaloutput)
+        self.remove(finaloutput)
 
         self.wait(2)
         self.play(Write(finaloutput))
@@ -1614,6 +1685,10 @@ class Bloch(ThreeDScene):
 
         self.wait()
 
+
+    
+    
+    
         
 
 
