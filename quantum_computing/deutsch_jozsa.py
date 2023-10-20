@@ -1461,15 +1461,21 @@ class DeutschAlgo(Scene):
         h0outplus  = MathTex(r" | + \rangle").set_color([TEAL_B]).move_to([-2.3, 2.25, 0])
 
         self.wait(2)
-
+ 
         self.play(ReplacementTransform(h1out, h1outminus), ReplacementTransform(h0out, h0outplus))
         self.wait()
         
         self.play(Transform(pi1, pi1form))
 
-        pi1form1 = MathTex(r" \frac{1}{2} (|0\rangle - |1\rangle) |0\rangle + \frac{1}{2}(|0\rangle - |1\rangle)|1\rangle").move_to([-3.7, -3, 0]).scale(0.8)
+        pi1form1 = MathTex(r" \frac{1}{2} (", r"|0\rangle", r"-", r"|1\rangle", r") |0\rangle + \frac{1}{2}(", r"|0\rangle", r"-", r"|1\rangle", r")|1\rangle").move_to([-3.7, -3, 0]).scale(0.8)
 
-        pi2form1 = MathTex(r" |\pi_2\rangle = \frac{1}{2} (|0 \oplus f(0) \rangle - |1 \oplus f(0) \rangle) |0\rangle \\ + \frac{1}{2}(|0\oplus f(1) \rangle - |1 \oplus f(1) \rangle)|1\rangle")
+
+        pi2form1 = MathTex(r" |\pi_2\rangle = \frac{1}{2} (", r"|0 \oplus f(0) \rangle", r"-", r"|1 \oplus f(0) \rangle", r") |0\rangle \\ + \frac{1}{2}(", r"|0\oplus f(1) \rangle", r"-", r"|1 \oplus f(1) \rangle", r")|1\rangle")
+
+        pi2form1[1].set_color([TEAL_B])
+        pi2form1[3].set_color([MAROON_A])
+        pi2form1[5].set_color([TEAL_B])
+        pi2form1[7].set_color([MAROON_A])
 
         self.wait(3)
 
@@ -1477,8 +1483,13 @@ class DeutschAlgo(Scene):
 
         self.wait(2)
 
-        pi1corner = MathTex(r" |\pi_1 \rangle = \frac{1}{2} (|0\rangle - |1\rangle) |0\rangle \\ + \frac{1}{2}(|0\rangle - |1\rangle)|1\rangle").scale(0.8).move_to([1.27, 2.3, 0])
+        pi1corner = MathTex(r" |\pi_1 \rangle = \frac{1}{2} (", r"|0\rangle", r"-", r"|1\rangle", r") |0\rangle \\ + \frac{1}{2}(", r"|0\rangle", r"-", r"|1\rangle", r")|1\rangle").scale(0.8).move_to([1.27, 2.3, 0])
 
+        pi1corner[1].set_color([TEAL_B])
+        pi1corner[3].set_color([MAROON_A])
+        pi1corner[5].set_color([TEAL_B])
+        pi1corner[7].set_color([MAROON_A])
+        
         self.play(ReplacementTransform(pi1form1, pi1corner))
 
         self.wait(2)
@@ -1488,7 +1499,7 @@ class DeutschAlgo(Scene):
 
         self.wait(2)
         
-        Uf = MathTex(r" Uf").move_to([-3.5, 0, 0])
+        Uf = MathTex(r" U_f").move_to([-3.5, 0, 0])
         Ufrect = Rectangle(height = 5.5, width = 2.3, fill_opacity = 0.2).set_color([TEAL_B, PINK, YELLOW]).move_to([-3.5, 0, 0])
 
         puf = Line(start =  [-5.3, 2.25, 0], end = [-4.65, 2.25, 0])
@@ -1504,11 +1515,11 @@ class DeutschAlgo(Scene):
 
         self.wait(5)
 
-        self.play(Write(pi2form1.move_to([2,7, 0, 0]).scale(0.8)))
+        self.play(Write(pi2form1.move_to([2.6, 0, 0]).scale(0.8)))
 
         pi2form2 = MathTex(r" |\pi_2\rangle = |-\rangle \left( \frac{(-1)^{f(0)} |0\rangle + (-1)^{f(1)}|1\rangle}{\sqrt{2}} \right) ").move_to([2.82, 0, 0]).scale(0.8)
 
-        self.wait(2)
+        self.wait(5)
 
         self.play(ReplacementTransform(pi2form1, pi2form2))
 
@@ -1518,9 +1529,18 @@ class DeutschAlgo(Scene):
 
         self.play(Write(phase))
 
-        pi2form3 = MathTex(r" |\pi_2\rangle &= (-1)^{f(0)}|0\rangle \left( \frac{|0\rangle + (-1)^{f(0)\oplus f(1)} |1\rangle}{\sqrt{2}}\right) ").move_to([3.17, 0, 0]).scale(0.8)
+        pi2form3 = MathTex(r" |\pi_2\rangle &= (-1)^{f(0)}|-\rangle \left( \frac{|0\rangle + (-1)^{f(0)\oplus f(1)} |1\rangle}{\sqrt{2}}\right) ").move_to([3.17, 0, 0]).scale(0.8)
 
-        pi2form4 = MathTex(r" |\pi_2\rangle &= (-1)^{f(0)}|0\rangle \left( \frac{|0\rangle + (-1)^{f(0)\oplus f(1)} |1\rangle}{\sqrt{2}}\right) \\ &= (-1)^{f(0)}|-\rangle |+\rangle \; \text{ if } f(0) \oplus f(1) = 0 \\ &= (-1)^{f(0)} |-\rangle |-\rangle \; \text{ if } f(0) \oplus f(1) = 1 ").move_to([3.19, 0, 0]).scale(0.8)
+
+        pi2form4 = MathTex(r" |\pi_2\rangle &= (-1)^{f(0)}|-\rangle \left( \frac{|0\rangle + (-1)^{f(0)\oplus f(1)} |1\rangle}{\sqrt{2}}\right) \\ &=  \left\{ \begin{array}{ll} \hspace{-2mm} (-1)^{f(0)} |-\rangle |+\rangle \; \text{ if } f(0) \oplus f(1) = 0 \\ \hspace{-2mm} (-1)^{f(0)} |-\rangle|-\rangle \; \text{ if } f(0) \oplus f(1) = 1 \end{array} \right. ").move_to([3.19, 0, 0]).scale(0.8)
+        """
+        pi2form4[1].set_color([TEAL_B])
+        pi2form4[2].set_color([MAROON_A])
+        pi2form4[4].set_color([TEAL_B])
+        pi2form4[5].set_color([MAROON_A])
+        """
+
+        pi2form5 = MathTex(r" |\pi_2\rangle = \left\{ \begin{array}{ll} \hspace{-2mm} (-1)^{f(0)} |-\rangle |+\rangle \; \text{ if } f(0) \oplus f(1) = 0 \\ \hspace{-2mm} (-1)^{f(0)} |-\rangle|-\rangle \; \text{ if } f(0) \oplus f(1) = 1 \end{array} \right. ").move_to([3.15, 0.3, 0]).scale(0.8)
 
         self.wait(2)
         self.play(Unwrite(phase))
@@ -1529,9 +1549,132 @@ class DeutschAlgo(Scene):
 
         self.play(ReplacementTransform(pi2form2, pi2form3)) 
 
+        self.wait(4)
+
+        self.play(ReplacementTransform(pi2form3, pi2form4))
+
         self.wait(2)
 
-        self.play(ReplacementTransform(pi2form3, pi2form4))  
+        self.play(ReplacementTransform(pi2form4, pi2form5))
+
+        self.wait(4)
+
+        pi3line = DashedLine([-4, 2.75, 0], [-4, -2.75, 0])
+        pi3 = MathTex(r" | \pi_3 \rangle").move_to([-4, -3.2, 0])
+
+        H = MathTex(r"H").move_to([-4.85, 2.25, 0])
+        Hsq = Square(side_length = 1, fill_opacity = 0.2).set_color([TEAL_B, MAROON_A]).move_to([-4.85, 2.25, 0])
+
+        semicirc = Arc(fill_opacity=0, angle=PI, stroke_width = 3).move_to([-3.05, 2.25, 0]).scale(0.3)
+        semicircsq = Square(side_length = 1, fill_opacity = 0.2).set_color([PINK, YELLOW]).move_to([-3.05, 2.25, 0])
+        dot = Dot([-3.05, 2.15,0], radius = 0.05)
+        line = Line([-3.05, 2.15, 0], [-2.75, 2.45, 0])
+
+        pi2H = Line(start =  [-6.2, 2.25, 0], end = [-5.35, 2.25, 0])
+        Hm = Line(start =  [-4.35, 2.25, 0], end = [-3.55, 2.25, 0])
+        me = Line(start =  [-2.55, 2.3, 0], end = [-2, 2.3, 0])
+        me2 = me.copy().shift(DOWN*0.2)
+
+        pi2e = Line(start =  [-6.2, -1.57, 0], end = [-2, -1.57, 0])
+
+        pi3form1 = MathTex(r" |\pi_3\rangle = \left\{ \begin{array}{ll} \hspace{-2mm} (-1)^{f(0)} |-\rangle |0\rangle \; \text{ if } f(0) \oplus f(1) = 0 \\ \hspace{-2mm} (-1)^{f(0)} |-\rangle|1\rangle \; \text{ if } f(0) \oplus f(1) = 1 \end{array} \right. ").move_to([3.15, -1.7, 0]).scale(0.8)
+
+        pi3form2 = MathTex(r"  = \left\{ \begin{array}{ll} \hspace{-2mm} (-1)^{f(0)} |0\rangle \; \text{ if } f(0) \oplus f(1) = 0 \\ \hspace{-2mm} (-1)^{f(0)} |1\rangle \; \text{ if } f(0) \oplus f(1) = 1 \end{array} \right. ").move_to([3.15, -1.7, 0]).scale(0.8)
+
+
+
+
+        #-------------------------------------------------#
+
+        self.play(VGroup(pi2line, pi2).animate.shift(LEFT*4), Unwrite(VGroup(Uf, Ufrect, puf, muf, ufpi2t, ufpi2b, h1outminus, h0outplus)), run_time = 2)
+
+        self.wait(2)
+
+        self.play(Write(VGroup(pi3line, pi3, H, Hsq, semicirc, semicircsq, dot, line, 
+                               pi2H, Hm, me, me2, pi2e)),
+                  run_time = 2
+        )
+
+        self.wait(7)
+
+        self.play(Write(pi3form1))
+
+        self.wait(5)
+
+        self.play(Transform(pi3form1, pi3form2))
+
+        self.wait(5)
+
+        self.play(Unwrite(VGroup(pi2line, pi2, Uf, Ufrect, puf, muf, ufpi2t, ufpi2b, h1outminus, h0outplus, pi3line, pi3, H, Hsq, semicirc, semicircsq, dot, line, pi2H, Hm, me, me2, pi2e, pi3form1, pi1corner, pi2form5, vline)), run_time = 3)
+
+        
+        zero = MathTex(r" | 0 \rangle ").move_to([-5, 2, 0])
+        one = MathTex(r" | 1 \rangle ").move_to([-5, -2, 0])
+
+        Hi1 = MathTex(r" H ").move_to([-3, 2, 0])
+        Hi1sq = Square(side_length = 1, fill_opacity = 0.2).set_color([TEAL_B, MAROON_A]).move_to([-3, 2, 0])
+        Hi2 = Hi1.copy().shift(DOWN*4)
+        Hi2sq = Hi1sq.copy().shift(DOWN*4)
+        Hio = Hi1.copy().shift(RIGHT*6)
+        Hiosq = Hi1sq.copy().shift(RIGHT*6)
+        Uf = MathTex(r" U_f ")
+        Ufrect = Rectangle(width = 3, height = 5.5, fill_opacity = 0.2).set_color([TEAL_B, PINK, YELLOW])
+
+
+        semicirc = Arc(fill_opacity=0, angle=PI, stroke_width = 3).move_to([5, 2, 0]).scale(0.3)
+        semicircsq = Hi1sq.copy().shift(RIGHT*8).set_color([PINK, YELLOW])
+        dot = Dot([5,1.84,0], radius = 0.05)
+        line = Line([5, 1.84, 0], [5.3, 2.14, 0])
+
+        group = VGroup(zero, one, Hi1, Hi1sq,
+                       Hi2, Hi2sq, Hio, Hiosq, Uf, Ufrect, semicirc,
+                       semicircsq, dot, line
+        )
+
+        hi1uf = Line(start =  [-2.5, 2, 0], end = [-1.5, 2, 0])
+        ufhio = hi1uf.copy().shift(RIGHT*4)
+        hi2uf = hi1uf.copy().shift(DOWN*4)
+        hiom = hi1uf.copy().shift(RIGHT*6)
+        zeroh = Line(start =  [-4.5, 2, 0], end = [-3.5, 2, 0])
+        oneh = zeroh.copy().shift(DOWN*4)
+        ufend = Line(start =  [1.5, -2, 0], end = [6.2, -2, 0])
+        mend1 = Line(start = [5.5, 2.1, 0], end = [6.2, 2.1, 0])
+        mend2 = mend1.copy().shift(DOWN*0.2)
+
+        lines = VGroup(hi1uf, ufhio, hi2uf, hiom, zeroh, oneh, ufend, mend1, mend2)
+
+        zer = MathTex(r"0").move_to([6.6, 2.3, 0])
+        on = MathTex(r"1").move_to([6.6, 1.8, 0])
+
+        pi1line = DashedLine([-2, 2.75, 0], [-2, -2.75, 0])
+        pi1 = MathTex(r" | \pi_1 \rangle").move_to([-2, -3.2, 0])
+        pi2line = DashedLine([2, 2.75, 0], [2, -2.75, 0])
+        pi2 = MathTex(r" | \pi_2 \rangle").move_to([2, -3.2, 0])
+        pi3line = DashedLine([4, 2.75, 0], [4, -2.75, 0])
+        pi3 = MathTex(r" | \pi_3 \rangle").move_to([4, -3.2, 0])
+
+        pis = VGroup(pi1line, pi1, pi2line, pi2, pi3line, pi3)
+
+        rectangle = SurroundingRectangle(VGroup(zer, on)).set_color([TEAL_B, MAROON_A])
+
+        groupf = VGroup(lines, group, zer, on, rectangle).move_to([0, 0, 0])
+        groupff = VGroup(lines, group, zer, on, rectangle, pis).move_to([0, 0, 0])
+
+        title = Tex(r" Deutsch's Algorithm ").set_color([TEAL_B, MAROON_A]).to_edge(UL)
+
+        self.wait()
+
+        self.play(FadeIn(title), FadeIn(VGroup(group, lines, zer, on, rectangle).move_to([0, -0.5, 0])), run_time = 4)
+
+        self.wait(2)
+
+        self.play(Unwrite(VGroup(title, group, lines, zer, on, rectangle)))
+
+        self.wait()
+
+        
+
+        
 
         
 class Bloch(ThreeDScene):
