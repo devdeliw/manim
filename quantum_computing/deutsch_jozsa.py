@@ -1122,14 +1122,11 @@ class UnitaryGates(Scene):
 
 class Deutsch(Scene):
     def construct(self):
-        title = Tex(r" Deutsch's Algorithm ").set_color([TEAL_B, MAROON_A]).to_edge(UL)
 
         func = MathTex(r" f \, : \, \Sigma^n \rightarrow \Sigma^ ").move_to([0, 2, 0])
         func2 = MathTex(r" f \, : \, \Sigma \rightarrow \Sigma").move_to([0, 2, 0])
         one2one = Tex(r" $f \, : \,$ 1 bit $\rightarrow$ 1 bit ").move_to([0, 2, 0])
 
-        self.play(Write(title))
-        self.wait()
         self.play(Write(func))
         self.wait(2)
         self.play(Transform(func, func2))
@@ -1230,7 +1227,7 @@ class Deutsch(Scene):
 
         self.wait(5)
 
-        self.play(Unwrite(VGroup(groupf, b1, b23, b4, constant, constant2, balanced, func, title)))
+        self.play(Unwrite(VGroup(groupf, b1, b23, b4, constant, constant2, balanced, func)))
 
         self.wait()
 
@@ -1827,6 +1824,198 @@ class Bloch(ThreeDScene):
         self.play(Unwrite(VGroup(bloch, axes, labels, one, zero)))
 
         self.wait()
+
+
+class Qiskit(Scene):
+    def construct(self):
+
+        qiskit_logo = ImageMobject("/Users/devaldeliwala/Desktop/qiskit.jpeg").move_to([0, 0, 0])
+
+        qiskit = Tex(r" Qiskit ").move_to([1, 0, 0]).scale(1.5)
+
+
+        self.play(FadeIn(qiskit_logo))
+        self.wait(1)
+        self.play(qiskit_logo.animate.shift(LEFT*1), Write(qiskit))
+
+        self.wait(2)
+
+        self.play(FadeOut(qiskit_logo), Unwrite(qiskit))
+
+        self.wait(2)
+
+        func_code1 = '''from qiskit import QuantumCircuit
+
+def deutsch_function(case: int):
+
+    f = QuantumCircuit(2)
+'''
+        func_code2 = '''from qiskit import QuantumCircuit
+
+def deutsch_function(case: int): 
+    f = QuantumCircuit(2)
+    if case in [2, 3]:
+        f.cx(0, 1)
+    if case in [3, 4]:
+        f.x(1)
+    return f
+'''
+
+
+        func_code1_code = Code(code = func_code2, tab_width = 1, background = "window", language = "Python", font = "Monospace", style = 'vim', line_spacing=1 ).to_edge(UL)
+
+        self.play(Write(func_code1_code))
+
+        qcircuitin = MathTex(r" q_0: \\[4px] q_1: " ).to_edge(LEFT).shift(DOWN*2.8).shift(RIGHT*0.5)
+
+        self.wait(2)
+
+        qcircuitin_rect = Rectangle(height = 0.5, width = 8, color = YELLOW, fill_opacity = 0.2, stroke_width = 1).move_to([-2.6, 1.25, 0])
+        case_rect = Rectangle(height = 2, width = 8, color = YELLOW, fill_opacity = 0.2, stroke_width = 1).move_to([-2.6, 0, 0])
+
+        q1line = Line(start =  [0, 0, 0], end = [3, 0, 0])
+        q1line.move_to([-3.9, -2.3, 0])
+        q2line = q1line.copy().shift(DOWN*0.95)
+
+        rect = SurroundingRectangle(VGroup(qcircuitin, q1line, q2line), corner_radius = 0.1, buff = 0.3).set_color([TEAL_B, MAROON_A])
+
+
+
+        self.play(FadeIn(qcircuitin_rect))
+
+        self.wait()
+
+        self.play(Write(qcircuitin))
+
+        self.wait(3)
+
+        self.play(ReplacementTransform(qcircuitin_rect, case_rect))
+
+        self.wait()
+
+        self.play(Write(VGroup(q1line, q2line, rect)))
+
+        case1 = Tex(r" if `case' $= $", r"\hspace{2mm}$1$").move_to([4, 0, 0])
+        case1[1].set_color([PINK, YELLOW])
+        case2 = Tex(r" if `case' $= $", r"\hspace{2mm}$2$").move_to([4, 0, 0])
+        case2[1].set_color([PINK, YELLOW])
+        case3 = Tex(r" if `case' $= $", r"\hspace{2mm}$3$").move_to([4, 0, 0])
+        case3[1].set_color([PINK, YELLOW])
+        case4 = Tex(r" if `case' $= $", r"\hspace{2mm}$4$").move_to([4, 0, 0])
+        case4[1].set_color([PINK, YELLOW])
+
+        f1 = MathTex(r"f_1(a)").move_to([4, -2.7, 0]).set_color([PINK, YELLOW]).scale(1.2)
+        f2 = MathTex(r"f_2(a)").move_to([4, -2.7, 0]).set_color([PINK, YELLOW]).scale(1.2)
+        f3 = MathTex(r"f_3(a)").move_to([4, -2.7, 0]).set_color([PINK, YELLOW]).scale(1.2)
+        f4 = MathTex(r"f_4(a)").move_to([4, -2.7, 0]).set_color([PINK, YELLOW]).scale(1.2)
+        
+
+        dot = Dot([0,0,0], radius = 0.08).move_to([-4, -2.3, 0])
+        X = MathTex(r"X").move_to([-4, -3.25, 0]).set_color([GRAY_E])
+        Xsq = Square(side_length = 0.5, fill_opacity = 1).set_color([TEAL_B, MAROON_A]).move_to([-4, -3.25, 0])
+        vline = Line(start =  [-4, -2.3, 0], end = [-4, -3, 0])
+
+        X2 = X.copy().shift(RIGHT*0.5)
+        X2sq = Xsq.copy().shift(RIGHT*0.5)
+
+
+        self.play(Write(case1))
+
+        self.wait(1)
+
+        self.play(Write(f1))
+
+        self.wait(4)
+
+        self.play(Transform(case1, case2), Transform(f1, f2), run_time = 1.5)
+
+        self.wait()
+
+
+        self.play(Write(VGroup(dot, Xsq, vline)))
+        self.play(Write(X))
+
+        self.wait(4)
+
+        self.play(Transform(case1, case3), Transform(f1, f3), run_time = 1.5)
+
+        self.wait()
+        self.play(VGroup(dot, X, Xsq, vline).animate.shift(LEFT*0.5), Write(X2sq))
+
+        X3 = MathTex(r"X").move_to([-4.5, -3.25, 0]).set_color([GRAY_E])
+
+        self.play(Write(X2), Write(X3))
+
+        self.wait(4)
+        self.play(FadeOut(X))
+        self.play(Transform(case1, case4), Transform(f1, f4), run_time = 1.5)
+
+        self.wait()
+
+        X4 = MathTex(r"X").move_to([-4, -3.25, 0]).set_color([GRAY_E])
+
+        self.play(Unwrite(VGroup(dot, Xsq, X3, vline, X2)))
+        self.play(X2sq.animate.shift(LEFT*0.5))
+        self.play(Write(X4))
+
+        self.wait(4)
+        
+        self.play(FadeOut(VGroup(func_code1_code, case_rect)))
+        self.play(Unwrite(VGroup(qcircuitin, q1line, q2line, X4, X2sq, case1, f1, rect)), run_time = 3)
+
+        code = '''def compile_circuit(function: QuantumCircuit):
+    n = function.num_qubits - 1
+    qc = QuantumCircuit(n + 1, n)
+
+    qc.x(n)
+    qc.h(range(n + 1))
+
+    qc.barrier()
+    qc.compose(function, inplace=True)
+    qc.barrier()
+
+    qc.h(range(n))
+    qc.measure(range(n), range(n))
+
+    return qc
+
+from qiskit_aer import AerSimulator
+
+def deutsch_algorithm(function: QuantumCircuit):
+    qc = compile_circuit(function)
+
+    result = AerSimulator().run(qc, shots=1, memory=True).result()
+    measurements = result.get_memory()
+    if measurements[0] == "0":
+        return "constant"
+    return "balanced"
+'''
+
+
+        func_code2_code = Code(code = code, tab_width = 1, background = "window", language = "Python", font = "Monospace", style = 'vim').scale(0.74)
+
+        self.wait(2)
+
+        self.play(Write(func_code2_code), run_time = 4)
+
+        self.wait(5)
+
+        self.play(FadeOut(func_code2_code), run_time = 2)
+        self.wait()
+
+
+
+        
+
+
+
+
+
+
+
+
+
+        
 
 
     
