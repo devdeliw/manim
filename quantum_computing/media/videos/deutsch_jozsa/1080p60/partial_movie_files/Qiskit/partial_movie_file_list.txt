@@ -37,8 +37,3 @@ file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_joz
 file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/1080p60/partial_movie_files/Qiskit/3931933789_2311842923_504412494.mp4'
 file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/1080p60/partial_movie_files/Qiskit/3931933789_420050916_3046603509.mp4'
 file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/1080p60/partial_movie_files/Qiskit/3931933789_1869577875_387000821.mp4'
-file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/1080p60/partial_movie_files/Qiskit/3931933789_125286499_4285501748.mp4'
-file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/1080p60/partial_movie_files/Qiskit/3931933789_2998660546_557260030.mp4'
-file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/1080p60/partial_movie_files/Qiskit/3931933789_36632488_220503744.mp4'
-file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/1080p60/partial_movie_files/Qiskit/3931933789_3332860718_2039304522.mp4'
-file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/1080p60/partial_movie_files/Qiskit/3931933789_329969645_3488735988.mp4'

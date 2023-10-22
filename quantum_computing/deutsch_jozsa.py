@@ -992,8 +992,8 @@ class Queries(ThreeDScene):
         self.play(Write((VGroup(dots, dots1, dots2, dots3, dots4, dots5, dots6, dots7))), run_time = 2)
         self.wait(4)
     
-        cube = Cube(side_length = 2, fill_opacity = 0.15, stroke_width = 3).set_color([TEAL_B, MAROON_A])
-        cube2 = Cube(side_length = 2, fill_opacity = 0.15, stroke_width = 3).set_color([TEAL_B, MAROON_A])
+        cube = Cube(side_length = 2, fill_opacity = 0.15, stroke_width = 1).set_color([TEAL_B, MAROON_A])
+        cube2 = Cube(side_length = 2, fill_opacity = 0.15, stroke_width = 1).set_color([TEAL_B, MAROON_A])
 
         self.play(Write(cube))
         
@@ -1037,7 +1037,7 @@ class Queries(ThreeDScene):
             self.wait(0.1)
 
         cubef = Cube(side_length = 1, fill_opacity = 0.15, 
-                     stroke_width = 3).set_color([PINK, YELLOW]).move_to([-5, 0, 0])
+                     stroke_width = 1).set_color([PINK, YELLOW]).move_to([-5, 0, 0])
 
         enddot = Surface(
             lambda u, v: np.array([
@@ -1963,6 +1963,11 @@ def deutsch_function(case: int):
         self.play(FadeOut(VGroup(func_code1_code, case_rect)))
         self.play(Unwrite(VGroup(qcircuitin, q1line, q2line, X4, X2sq, case1, f1, rect)), run_time = 3)
 
+
+class QiskitAlgo(Scene):
+    def construct(self):
+        
+
         code = '''def compile_circuit(function: QuantumCircuit):
     n = function.num_qubits - 1
     qc = QuantumCircuit(n + 1, n)
@@ -1991,17 +1996,228 @@ def deutsch_algorithm(function: QuantumCircuit):
     return "balanced"
 '''
 
-
         func_code2_code = Code(code = code, tab_width = 1, background = "window", language = "Python", font = "Monospace", style = 'vim').scale(0.74)
 
-        self.wait(2)
 
         self.play(Write(func_code2_code), run_time = 4)
 
+        compile_rect = Rectangle(height = 3.65, width = 10.5, color = YELLOW, fill_opacity = 0.2, stroke_width = 1).move_to([0, 1.22, 0])
+
+        algo_rect = Rectangle(height = 2.43, width = 10.5, color = YELLOW, fill_opacity = 0.2, stroke_width = 1).move_to([0, -2.04, 0])
+
+        self.wait(2) 
+
+        self.play(FadeIn(compile_rect)) 
+        self.wait(3)
+
+        self.play(Transform(compile_rect, algo_rect))
+
+        self.wait(3)
+        self.play(FadeOut(compile_rect))
+        self.wait(2)
+
+        self.play(Uncreate(func_code2_code), run_time = 2)
+        self.wait()
+
+class TimeComplexity(ThreeDScene):
+    def construct(self): 
+
+        self.set_camera_orientation(
+            phi = 75*DEGREES,
+            theta = 45*DEGREES,
+            distance = 3
+        )
+        
+        sphere1 = Surface(
+            lambda u, v: np.array([
+            0.3 * np.cos(u) * np.cos(v),
+            0.3 * np.cos(u) * np.sin(v),
+            0.3 * np.sin(u)
+            ]), v_range=[0, TAU], u_range=[-PI / 2, PI / 2],
+            checkerboard_colors=[TEAL_B, MAROON_A], resolution=(3, 3), fill_opacity = 0.1
+        ).move_to([-5, -1.5, 0])
+
+        sphere2 = Surface(
+            lambda u, v: np.array([
+            0.3 * np.cos(u) * np.cos(v),
+            0.3 * np.cos(u) * np.sin(v),
+            0.3 * np.sin(u)
+            ]), v_range=[0, TAU], u_range=[-PI / 2, PI / 2],
+            checkerboard_colors=[TEAL_B, MAROON_A], resolution=(3, 3), fill_opacity = 0.1
+        ).move_to([-5, 1.5, 0])
+
+        midsphere = Surface(
+            lambda u, v: np.array([
+            0.5 * np.cos(u) * np.cos(v),
+            0.5 * np.cos(u) * np.sin(v),
+            0.5 * np.sin(u)
+            ]), v_range=[0, TAU], u_range=[-PI / 2, PI / 2],
+            checkerboard_colors=[TEAL_B, MAROON_A], resolution=(4, 8), fill_opacity = 0.1
+        )
+
+        cube = Cube(side_length = 2, fill_opacity = 0.2, stroke_width = 1).set_color([TEAL_B, MAROON_A])
+
+        cubef = Cube(side_length = 1.2, fill_opacity = 0.2, stroke_width = 1).set_color([PINK, YELLOW]).move_to([5, 0, 0])
+
+        line1 = Line(start =  [1, 1, 1], end = [4.4, 0.6, 0.6])
+        line2 = Line(start = [1, -1, 1], end = [4.4, -0.6, 0.6])
+        line3 = Line(start =  [1, 1, -1], end = [4.4, 0.6, -0.6])
+        line4 = Line(start = [1, -1, -1], end = [4.4, -0.6, -0.6])
+
+        
+        spheref = Surface(
+            lambda u, v: np.array([
+            0.4 * np.cos(u) * np.cos(v),
+            0.4 * np.cos(u) * np.sin(v),
+            0.4 * np.sin(u)
+            ]), v_range=[0, TAU], u_range=[-PI / 2, PI / 2],
+            checkerboard_colors=[PINK, YELLOW], resolution=(4, 8), fill_opacity = 0.1
+        ).move_to([5, 0, 0])
+
+        
+        self.begin_ambient_camera_rotation(rate = 0.2)
+
+        self.play(Write(sphere1), Write(sphere2))
+        self.wait(3)
+
+        self.play(Write(cube), Write(midsphere))
+
+        self.wait(2)
+
+        self.play(Transform(sphere1, midsphere), Transform(sphere2, midsphere), run_time = 2)
+        self.wait(4)
+
+        self.play(Transform(sphere1, spheref), Transform(sphere2, spheref), Transform(midsphere, spheref), Transform(cube, cubef), Write(VGroup(line1, line2, line3, line4)), run_time = 2)
+        self.play(Unwrite(VGroup(line1, line2, line3, line4)))
+
         self.wait(5)
 
-        self.play(FadeOut(func_code2_code), run_time = 2)
+        self.play(Unwrite(VGroup(sphere1, sphere2, midsphere, cube)), run_time = 2)
+
         self.wait()
+
+        self.stop_ambient_camera_rotation()
+
+class TimeComplexity2(ThreeDScene):
+    def construct(self):
+
+        self.set_camera_orientation(
+            phi = 75*DEGREES,
+            theta = 45*DEGREES,
+            distance = 3
+        )
+
+        sphere1 = Surface(
+            lambda u, v: np.array([
+            0.3 * np.cos(u) * np.cos(v),
+            0.3 * np.cos(u) * np.sin(v),
+            0.3 * np.sin(u)
+            ]), v_range=[0, TAU], u_range=[-PI / 2, PI / 2],
+            checkerboard_colors=[TEAL_B, MAROON_A], resolution=(3, 3), fill_opacity = 0.1
+        ).move_to([-5, -1.5, 0])
+
+        sphere2 = Surface(
+            lambda u, v: np.array([
+            0.3 * np.cos(u) * np.cos(v),
+            0.3 * np.cos(u) * np.sin(v),
+            0.3 * np.sin(u)
+            ]), v_range=[0, TAU], u_range=[-PI / 2, PI / 2],
+            checkerboard_colors=[TEAL_B, MAROON_A], resolution=(3, 3), fill_opacity = 0.1
+        ).move_to([-5, 1.5, 0])
+
+        midsphere = Surface(
+            lambda u, v: np.array([
+            0.5 * np.cos(u) * np.cos(v),
+            0.5 * np.cos(u) * np.sin(v),
+            0.5 * np.sin(u)
+            ]), v_range=[0, TAU], u_range=[-PI / 2, PI / 2],
+            checkerboard_colors=[TEAL_B, MAROON_A], resolution=(4, 8), fill_opacity = 0.1
+        )
+
+        cube = Cube(side_length = 2, fill_opacity = 0.2, stroke_width = 1).set_color([TEAL_B, MAROON_A])
+
+        cubef = Cube(side_length = 1.2, fill_opacity = 0.2, stroke_width = 1).set_color([PINK, YELLOW]).move_to([5, 0, 0])
+
+        line1 = Line(start =  [1, 1, 1], end = [4.4, 0.6, 0.6])
+        line2 = Line(start = [1, -1, 1], end = [4.4, -0.6, 0.6])
+        line3 = Line(start =  [1, 1, -1], end = [4.4, 0.6, -0.6])
+        line4 = Line(start = [1, -1, -1], end = [4.4, -0.6, -0.6])
+
+
+        spheref = Surface(
+            lambda u, v: np.array([
+            0.4 * np.cos(u) * np.cos(v),
+            0.4 * np.cos(u) * np.sin(v),
+            0.4 * np.sin(u)
+            ]), v_range=[0, TAU], u_range=[-PI / 2, PI / 2],
+            checkerboard_colors=[PINK, YELLOW], resolution=(4, 8), fill_opacity = 0.1
+        ).move_to([5, 0, 0])
+
+        self.begin_ambient_camera_rotation(rate = 0.2)
+
+        self.play(Write(sphere1), Write(sphere2))
+        self.wait(3)
+
+        self.play(Write(cube), Write(midsphere))
+
+        self.wait(2)
+
+        self.play(Transform(sphere1, midsphere), run_time = 2)
+        self.wait()
+        self.play(Transform(sphere2, midsphere), run_time = 2)
+        self.wait(4)
+
+        self.play(Transform(sphere1, spheref), Transform(sphere2, spheref), Transform(midsphere, spheref), Transform(cube, cubef), Write(VGroup(line1, line2, line3, line4)), run_time = 2)
+        self.play(Unwrite(VGroup(line1, line2, line3, line4)))
+
+        self.wait(5)
+
+        self.play(Unwrite(VGroup(sphere1, sphere2, midsphere, cube)), run_time = 2)
+
+        self.wait()
+
+        self.stop_ambient_camera_rotation()
+
+
+class Introduction(Scene):
+    def construct(self):
+        
+
+        thumbnail = ImageMobject("/Users/devaldeliwala/Desktop/Thumbnail_QC.png").scale(0.5)
+
+        thumb_rect = SurroundingRectangle(thumbnail, buff = 0.1).set_color([TEAL_B, MAROON_A])
+        thumb_rect2 = SurroundingRectangle(thumbnail, buff = 0.2).set_color([PINK, YELLOW, TEAL_B])
+
+        self.play(FadeIn(thumbnail))
+        self.play(Write(VGroup(thumb_rect, thumb_rect2)), run_time = 2)
+
+        self.wait(4)
+        self.play(thumbnail.animate.scale(0.65), VGroup(thumb_rect, thumb_rect2).animate.scale(0.65))
+        self.wait()
+        self.play(thumbnail.animate.to_edge(UR), VGroup(thumb_rect, thumb_rect2).animate.to_edge(UR))
+
+        self.wait(10)
+
+        self.play(FadeOut(thumbnail), Unwrite(VGroup(thumb_rect, thumb_rect2)), run_time = 2)
+        self.wait()
+
+
+
+        
+        
+
+        
+
+
+
+
+
+
+
+
+        
+        
+        
 
 
 

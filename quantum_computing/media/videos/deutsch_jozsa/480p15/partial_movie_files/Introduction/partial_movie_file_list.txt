@@ -1,0 +1,5 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/480p15/partial_movie_files/Introduction/4266129954_2134471456_223132457.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/480p15/partial_movie_files/Introduction/1442284246_3438750828_4082944228.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/480p15/partial_movie_files/Introduction/1442284246_2311842923_2720832774.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/480p15/partial_movie_files/Introduction/1442284246_3177805085_3339536749.mp4'
