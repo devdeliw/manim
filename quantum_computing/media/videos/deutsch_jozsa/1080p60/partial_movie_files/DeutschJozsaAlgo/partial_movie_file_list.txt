@@ -1,0 +1,11 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/1080p60/partial_movie_files/DeutschJozsaAlgo/2902699114_2662947487_223132457.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/1080p60/partial_movie_files/DeutschJozsaAlgo/3931933789_2077013143_3191960645.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/1080p60/partial_movie_files/DeutschJozsaAlgo/3931933789_749745516_3380264068.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/1080p60/partial_movie_files/DeutschJozsaAlgo/3931933789_377028111_635765508.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/1080p60/partial_movie_files/DeutschJozsaAlgo/3931933789_125286499_3565416867.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/1080p60/partial_movie_files/DeutschJozsaAlgo/3931933789_2761402613_311156240.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/1080p60/partial_movie_files/DeutschJozsaAlgo/3931933789_3450313401_100245944.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/1080p60/partial_movie_files/DeutschJozsaAlgo/3931933789_202435876_3335331237.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/1080p60/partial_movie_files/DeutschJozsaAlgo/3931933789_3759209955_3400279251.mp4'
+file 'file:/Users/devaldeliwala/manim/quantum_computing/media/videos/deutsch_jozsa/1080p60/partial_movie_files/DeutschJozsaAlgo/3931933789_329969645_3547520947.mp4'

@@ -2202,6 +2202,107 @@ class Introduction(Scene):
         self.wait()
 
 
+class DeutschJozsaAlgo(Scene):
+    def construct(self):
+        
+        zero = MathTex(r"|0\rangle").move_to([-5, 3, 0])
+        zero2 = zero.copy().shift(DOWN*1.4)
+        zero3 = zero.copy().shift(DOWN*4.2)
+
+        one = MathTex(r"|1\rangle").move_to([-5, -2.6, 0])
+
+        Uf = MathTex(r"U_f")
+        H = MathTex(r"H").move_to([-2.5, 3, 0])
+        Hrect = SurroundingRectangle(H, fill_opacity = 1, buff = 0.2).set_color([TEAL_B, MAROON_A])
+        H2 = H.copy().shift(DOWN*1.4)
+        H2rect = SurroundingRectangle(H2, fill_opacity = 1, buff = 0.2).set_color([TEAL_B, MAROON_A])
+        H3 = H.copy().shift(DOWN*4.2)
+        H3rect = SurroundingRectangle(H3, fill_opacity = 1, buff = 0.2).set_color([TEAL_B, MAROON_A])
+        H4 = H.copy().shift(DOWN*5.6)
+        H4rect = SurroundingRectangle(H4, fill_opacity = 1, buff = 0.2).set_color([TEAL_B, MAROON_A])
+
+        vdots = MathTex(r" \vdots ").move_to([-5, 0.2, 0])
+        vdots2 = vdots.copy().shift(RIGHT*2.5)
+        vdots3 = vdots2.copy().shift(RIGHT*5)
+        vdots4 = vdots3.copy().shift(RIGHT*2.5)  
+
+        dots = VGroup(vdots, vdots2, vdots3, vdots4)
+
+        H5 = H.copy().shift(RIGHT*5)
+        H5rect = SurroundingRectangle(H5, fill_opacity = 1, buff = 0.2).set_color([TEAL_B, MAROON_A])
+        H52 = H5.copy().shift(DOWN*1.4)
+        H52rect = SurroundingRectangle(H52, fill_opacity = 1, buff = 0.2).set_color([TEAL_B, MAROON_A])
+        H53 = H5.copy().shift(DOWN*4.2)
+        H53rect = SurroundingRectangle(H53, fill_opacity = 1, buff = 0.2).set_color([TEAL_B, MAROON_A])
+
+        semicirc = Arc(fill_opacity=0, angle=PI, stroke_width = 3).scale(0.3).move_to([5, 3, 0])
+        dot = Dot([5,1.84,0], radius = 0.05).move_to([5, 2.9, 0])
+        line = Line([5, 2.9, 0], [5.3, 3.2, 0])
+
+        measure = VGroup(semicirc, dot, line)
+        measurerect = SurroundingRectangle(measure, fill_opacity = 1, buff = 0.2).set_color([PINK, YELLOW])
+
+        measure2 = measure.copy().shift(DOWN*1.4)
+        measure2rect = SurroundingRectangle(measure2, fill_opacity = 1, buff = 0.2).set_color([PINK, YELLOW])
+
+        measure3 = measure.copy().shift(DOWN*4.2)
+        measure3rect = SurroundingRectangle(measure3, fill_opacity = 1, buff = 0.2).set_color([PINK, YELLOW])
+
+        y = MathTex(r" y \in \Sigma^n ")
+
+        Mobject = VGroup(
+                         Uf, H, H2, H3, H4, H5, H52, H53, 
+                         measure, measure2, measure3
+        ).set_color([GRAY_D])
+
+        zeroone = VGroup(zero, zero2, zero3, one)
+
+        Uf_rect = Rectangle(width = 3, height = 7, fill_opacity = 1).set_color([TEAL_B, PINK, YELLOW])
+
+        rects = VGroup(Uf_rect, Hrect, H2rect, H3rect, 
+                       H4rect, H5rect, H52rect, H53rect, 
+                       measurerect, measure2rect, measure3rect
+        )
+
+        line1 = Line(start =  [-4.5, 3, 0], end = [4.5, 3, 0])
+        line2 = line1.copy().shift(DOWN*1.4)
+        line3 = line1.copy().shift(DOWN*4.2)
+        line4 = Line(start =  [-4.5, -2.6, 0], end = [5.5, -2.6, 0])
+
+        lines = VGroup(line1, line2, line3, line4)
+
+        group = VGroup(lines, rects, dots, Mobject, zeroone).scale(0.85).to_edge(DOWN)
+
+        title = Tex(r"The Deutsch-Jozsa Algorithm").to_edge(UL).set_color([TEAL_B, MAROON_A])
+
+
+
+        self.play(Write(lines), run_time = 2)
+        self.play(Write(rects), run_time = 2)
+        self.play(Write(dots), run_time = 1)
+        self.play(Write(Mobject), Write(zeroone), run_time = 5)
+
+        self.wait(2)
+
+        self.play(Write(title), run_time = 2)
+
+
+        self.play(Unwrite(Mobject), run_time = 2)
+        self.play(Unwrite(VGroup(rects, dots)), run_time = 3)
+        self.play(Unwrite(lines), Unwrite(title), Unwrite(zeroone))
+        self.wait()
+        
+
+
+        
+
+
+
+
+
+
+
+
 
         
         
