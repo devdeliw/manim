@@ -2296,7 +2296,7 @@ class DeutschJozsaAlgo(Scene):
 class Thumbnail(Scene):
     def construct(self):
         
-        deutsch = Tex(r" Deutsch's Algorithm ").scale(1.5).move_to([-2.5, 2.5, 0])
+        deutsch = Tex(r" Deutsch's Algorithm ").scale(2).move_to([-2.1, 2.5, 0])
 
         code = ImageMobject("/Users/devaldeliwala/Desktop/screenshot0.png").scale(0.25).move_to([4.5,2.5,0])
         bloch = ImageMobject("/Users/devaldeliwala/Desktop/screenshot2.png").scale(0.35).to_edge(DR)
