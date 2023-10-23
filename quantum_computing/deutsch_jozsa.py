@@ -2291,7 +2291,18 @@ class DeutschJozsaAlgo(Scene):
         self.play(Unwrite(VGroup(rects, dots)), run_time = 3)
         self.play(Unwrite(lines), Unwrite(title), Unwrite(zeroone))
         self.wait()
+
+
+class Thumbnail(Scene):
+    def construct(self):
         
+        deutsch = Tex(r" Deutsch's Algorithm ").scale(1.5).move_to([-2.5, 2.5, 0])
+
+        code = ImageMobject("/Users/devaldeliwala/Desktop/screenshot0.png").scale(0.25).move_to([4.5,2.5,0])
+        bloch = ImageMobject("/Users/devaldeliwala/Desktop/screenshot2.png").scale(0.35).to_edge(DR)
+        algo = ImageMobject("/users/devaldeliwala/Desktop/screenshot1.png").scale(0.5).to_edge(DL)
+
+        self.add(deutsch, algo, bloch, code) 
 
 
         
