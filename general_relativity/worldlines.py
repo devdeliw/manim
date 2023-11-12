@@ -381,5 +381,107 @@ class Flat2(ThreeDScene):
         self.play(Unwrite(VGroup(title2, worldline2, lightcones)), run_time = 2)
         self.stop_ambient_camera_rotation()
         self.wait()
+
+
+class MinkowskiSpace(ThreeDScene):
+    def construct(self): 
         
+        spacetime = Surface(
+            lambda u, v: np.array([u, v, -1.5]),
+            u_range = [-3, 3],
+            v_range = [-3, 3], 
+            resolution = [8, 8], 
+        ).set_color([GRAY_E])
+
+        self.set_camera_orientation(
+            phi = 75*DEGREES,
+            theta = 30*DEGREES, 
+            distance = 5
+        )
+
+        self.begin_ambient_camera_rotation(rate = 0.1)
+
+        self.play(Write(spacetime), run_time = 2)
+
+        self.wait(3)
+        self.stop_ambient_camera_rotation()
+
+        self.move_camera(
+            phi = 0*DEGREES, 
+            theta = -90*DEGREES,
+            distance = 3, 
+            run_time = 2
+        )
+
+        self.wait()
+
+        axes = ThreeDAxes( 
+            x_range = (-5, 5, 5), 
+            y_range = (-5, 5, 5),
+            z_range = (-5, 5, 5),
+            x_length = 5.5, 
+            y_length = 5.5,
+            z_length = 5.5,
+            axis_config={'tip_shape': StealthTip}
+        ) 
+
+        labels = axes.get_axis_labels(
+            Tex(r"$x$"), Tex(r"$y$"), Tex(r"$z$")
+        )
+
+        self.play(Write(axes), Write(labels))
+        self.wait(4)
+
+        v1 = Arrow3D([0, 0, 0], [-2, 2, -2], resolution=3)
+        v2 = Arrow3D([0, 0, 0], [2, 0.6, 3], resolution=3)
+        s = Arrow3D([2, 0.6, 3], [-2, 2, -2], resolution = 8).set_color_by_gradient(TEAL_B, PINK, YELLOW)
+
+        self.play(spacetime.animate.set_opacity(0.4), run_time = 2)
+        self.wait(1)
+
+        self.play(Write(VGroup(v1, v2)))
+
+        self.wait(2)
+
+        self.play(Write(s), run_time = 2)
+
+        slabel = MathTex(r"\Delta s").move_to([0.5, 1.6, 0])
+        norm = MathTex(r" (\Delta s)^2 = (\Delta x)^2 + (\Delta y)^2 ").to_edge(DOWN).scale(0.8)
+        self.add_fixed_in_frame_mobjects(slabel, norm)
+        self.remove(slabel, norm)
+
+        self.wait(2)
+
+        self.play(Write(slabel))
+        self.wait(2)
+        self.play(Write(norm), run_time = 2)
+
+        self.wait(4)
+
+        self.play(Unwrite(VGroup(norm, slabel)))
+        
+        self.move_camera(
+            phi = 70*DEGREES, 
+            theta = -180*DEGREES,
+            distance = 5,
+            run_time = 2
+        )
+
+        self.play(spacetime.animate.move_to([0, 0, 2.1]), run_time = 2)
+        self.play(spacetime.animate.move_to([0, 0, -1.5]), run_time = 2)
+        
+        self.wait(2)
+
+        norm3d = MathTex(r" (\Delta s)^2 = (\Delta x)^2 + (\Delta y)^2 + (\Delta z)^2 ").scale(0.8).to_edge(DOWN)
+        self.add_fixed_in_frame_mobjects(norm3d)
+        self.remove(norm3d)
+
+        self.play(Write(norm3d), run_time = 1)
+
+        self.wait(5)
+        
+
+        
+        
+     
 
