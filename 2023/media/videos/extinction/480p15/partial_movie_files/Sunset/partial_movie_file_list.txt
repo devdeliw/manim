@@ -1,4 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/Users/devaldeliwala/manim/2023/media/videos/extinction/480p15/partial_movie_files/Sunset/4266129954_3646790387_223132457.mp4'
-file 'file:/Users/devaldeliwala/manim/2023/media/videos/extinction/480p15/partial_movie_files/Sunset/1442284246_2331997255_2927198785.mp4'
-file 'file:/Users/devaldeliwala/manim/2023/media/videos/extinction/480p15/partial_movie_files/Sunset/3348255794_2544517834_4067559736.mp4'
