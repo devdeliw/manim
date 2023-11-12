@@ -1,0 +1,6 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/devaldeliwala/manim/general_relativity/media/videos/worldlines/1080p60/partial_movie_files/ScienceClic/2902699114_1249757329_223132457.mp4'
+file 'file:/Users/devaldeliwala/manim/general_relativity/media/videos/worldlines/1080p60/partial_movie_files/ScienceClic/3931933789_4139852904_3804270060.mp4'
+file 'file:/Users/devaldeliwala/manim/general_relativity/media/videos/worldlines/1080p60/partial_movie_files/ScienceClic/3931933789_36632488_1149362333.mp4'
+file 'file:/Users/devaldeliwala/manim/general_relativity/media/videos/worldlines/1080p60/partial_movie_files/ScienceClic/3931933789_3151258379_231817712.mp4'
+file 'file:/Users/devaldeliwala/manim/general_relativity/media/videos/worldlines/1080p60/partial_movie_files/ScienceClic/3931933789_329969645_3547520947.mp4'

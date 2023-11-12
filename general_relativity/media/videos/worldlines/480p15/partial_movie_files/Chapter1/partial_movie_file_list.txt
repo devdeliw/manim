@@ -1,0 +1,8 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/devaldeliwala/manim/general_relativity/media/videos/worldlines/480p15/partial_movie_files/Chapter1/4134569309_1569391386_223132457.mp4'
+file 'file:/Users/devaldeliwala/manim/general_relativity/media/videos/worldlines/480p15/partial_movie_files/Chapter1/3962031072_3467822883_3443679088.mp4'
+file 'file:/Users/devaldeliwala/manim/general_relativity/media/videos/worldlines/480p15/partial_movie_files/Chapter1/3962031072_855518566_803049913.mp4'
+file 'file:/Users/devaldeliwala/manim/general_relativity/media/videos/worldlines/480p15/partial_movie_files/Chapter1/3962031072_2319106152_4293958701.mp4'
+file 'file:/Users/devaldeliwala/manim/general_relativity/media/videos/worldlines/480p15/partial_movie_files/Chapter1/3962031072_3914838899_4293958701.mp4'
+file 'file:/Users/devaldeliwala/manim/general_relativity/media/videos/worldlines/480p15/partial_movie_files/Chapter1/3962031072_150503939_2700023400.mp4'
+file 'file:/Users/devaldeliwala/manim/general_relativity/media/videos/worldlines/480p15/partial_movie_files/Chapter1/3962031072_3467822883_1071484169.mp4'
