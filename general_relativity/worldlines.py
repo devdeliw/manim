@@ -479,9 +479,124 @@ class MinkowskiSpace(ThreeDScene):
         self.play(Write(norm3d), run_time = 1)
 
         self.wait(5)
+
+        self.play(Unwrite(norm3d))
+
+        cube = Cube(side_length=4, fill_opacity=0.3, fill_color=GRAY_D)
+
+        self.move_camera(
+            phi = 78*DEGREES, 
+            theta = 30*DEGREES,
+            distance = 2,
+            run_time = 2
+        )
+
+        self.play(Unwrite(VGroup(v1, v2, s)), run_time = 1)
+        self.wait(2)
+        
+        axes2 = ThreeDAxes(
+            x_range = (-5, 5, 5), 
+            y_range = (-5, 5, 5), 
+            z_range = (0, 5, 5), 
+            x_length = 7, 
+            y_length = 7, 
+            z_length = 5, 
+            axis_config={'tip_shape': StealthTip}
+        ).move_to([0,0,2.5])
+        
+        labels2 = axes.get_axis_labels(
+            Tex(r"SPACE").scale(0.7), Tex(r"SPACE").scale(0.7), Tex(r"")
+        )
+
+        t = MathTex(r"t").move_to([0, 0, 3.45])
+        self.add_fixed_orientation_mobjects(t)
+        self.remove(t)
+
+        arr1 = Arrow3D(
+            start = np.array([0, 0, 0]),
+            end = np.array([2, 2, 1]),
+            resolution = 5, 
+            color = WHITE, 
+        )
+        
+        arr2 = Arrow3D(
+            start = np.array([0, 0, 0]),
+            end = np.array([1, 2, 4]),
+            resolution = 5, 
+            color = WHITE, 
+        )
+
+        sdiff = Arrow3D(
+            start = np.array([2, 2, 1]),
+            end = np.array([1, 2, 4]),
+            resolution = 8, 
+        ).set_color_by_gradient(TEAL_B, YELLOW, PINK)
+        
+        
+        VGroup(axes2, arr1, arr2, sdiff, labels2).move_to([0, 0, 0.45])
+
+        self.play(ReplacementTransform(VGroup(axes, labels), VGroup(axes2, labels2)), Write(t), run_time = 2)
+        self.wait()
+        self.play(ReplacementTransform(spacetime, cube), run_time = 2)
+
+        self.begin_ambient_camera_rotation(rate = 0.1)
+
+        self.wait(2)
+
+        self.play(Write(VGroup(arr1, arr2)), run_time = 2)
+        
+        self.wait(2)
+
+        self.play(Write(sdiff), run_time = 2) 
+
+        self.wait(6)
+
+        spacetime_interval = MathTex(r" (\Delta s)^2 = -(c\Delta t)^2 + (\Delta x)^2 + (\Delta y)^2 + (\Delta z)^2").scale(0.7).to_edge(DOWN)
+        self.add_fixed_in_frame_mobjects(spacetime_interval)
+        self.remove(spacetime_interval)
+
+        spacetime_interval2 = MathTex(r" (\Delta s)^2 = -(c\Delta t')^2 + (\Delta x')^2 + (\Delta y')^2 + (\Delta z')^2").scale(0.7).to_edge(DOWN)
+        self.add_fixed_in_frame_mobjects(spacetime_interval2)
+        self.remove(spacetime_interval2)
+
+        self.play(Write(spacetime_interval), run_time = 2)
+
+        self.wait(10)
+
+        self.play(Unwrite(spacetime_interval), run_time = 1)
+        
+        self.wait(2)
+
+        self.play(Rotate(VGroup(axes2, labels2, t, arr1, arr2, sdiff, cube), angle = PI/4, axis = [1,-1,0]), run_time = 2)
+
+        self.play(Write(spacetime_interval2), run_time = 2)
+
+        self.wait(5)
+
+        minkowski = Tex(r" Minkowski Spacetime ").scale(1.2).set_color([TEAL_B, MAROON_A]).to_edge(DOWN)
+        self.add_fixed_in_frame_mobjects(minkowski)
+        self.remove(minkowski)
+
+        self.play(Unwrite(spacetime_interval2), run_time = 2)
+        self.wait(5)
+
+        self.play(DrawBorderThenFill(minkowski), run_time = 2)
+
+        self.wait(6)
+
+        self.play(Unwrite(VGroup(cube, axes2, labels2, t, arr1, arr2, sdiff, minkowski)), run_time = 6)
+        self.wait()
+
+        self.stop_ambient_camera_rotation()
+
+
+class MinkowskiMetric(Scene):
+    def construct(self):
         
 
-        
+    
+
+         
         
      
 
