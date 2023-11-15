@@ -592,6 +592,332 @@ class MinkowskiSpace(ThreeDScene):
 
 class MinkowskiMetric(Scene):
     def construct(self):
+
+        s = MathTex(r" (\Delta s)^2 = -(c\Delta t)^2 + (\Delta x)^2 + (\Delta y)^2 + (\Delta z)^2 ")
+        srect = SurroundingRectangle(s).set_color([TEAL_B, PINK, YELLOW])
+
+        sf = VGroup(s, srect)
+
+        self.play(Write(sf), run_time = 2)
+        self.wait()
+        self.play(sf.animate.move_to([0, 2, 0]))
+
+
+        metric = MathTex(r" \eta_{\mu \nu} = \begin{pmatrix} -1 & 0 & 0 & 0 \\ \
+                                            0 & 1 & 0 & 0 \\ \
+                                            0 & 0 & 1 & 0 \\ \
+                                            0 & 0 & 0 & 1 \
+                                            \end{pmatrix} "
+                ).move_to([0, -2, 0])
+
+        xmu = MathTex(r" x^\mu : ").move_to([-0.8, 0, 0])
+        x0ct = MathTex(r" x^0 = ct ").move_to([0.75, 0.9, 0])
+        x1x = MathTex(r" x^1 = x ").move_to([0.7, 0.3, 0])
+        x2y = MathTex(r" x^2 = y ").move_to([0.7, -0.3, 0])
+        x3z = MathTex(r" x^3 = z ").move_to([0.7, -0.9, 0])
+
+        greek_notation = VGroup(xmu, x0ct, x1x, x2y, x3z).move_to([0, -1, 0])
+
+        x0 = MathTex(r" x^0 ").move_to([-0.4, -0.3, 0])
+        x1 = MathTex(r" x^1 ").move_to([0.5, -0.3, 0])
+        x2 = MathTex(r" x^2 ").move_to([1.3, -0.3, 0])
+        x3 = MathTex(r" x^3 ").move_to([2.15, -0.3, 0])
+
+        minkmetric = VGroup(metric, x0, x1, x2, x3).shift(UP*1)
+        
+        self.wait(2)
+
+        self.play(Write(greek_notation), run_time = 2)
+
+        self.wait(5)
+
+        self.play(ReplacementTransform(greek_notation[1], x0), 
+                  ReplacementTransform(greek_notation[2], x1),
+                  ReplacementTransform(greek_notation[3], x2), 
+                  ReplacementTransform(greek_notation[4], x3), 
+                  FadeOut(greek_notation[0]),
+                  run_time = 2
+        )
+
+        self.wait()
+
+        self.play(Write(metric), run_time = 2)
+
+        snew = MathTex(r" (\Delta s)^2", r"=", r"\eta_{\mu \nu}", r"\Delta x^\mu \Delta x^\nu ").move_to([0, 2, 0])
+        snewrect = SurroundingRectangle(snew).set_color([TEAL_B, PINK, YELLOW]).move_to([0,2,0])
+
+        minkowski_metric = Tex("Minkowski Metric").to_edge(DOWN).set_color([TEAL_B, MAROON_A]).scale(1.5)
+
+        self.wait(3)
+
+        self.play(DrawBorderThenFill(minkowski_metric), run_time = 2)
+
+        self.wait(3)
+
+        self.play(Unwrite(minkowski_metric), run_time = 1)
+
+        self.wait(2)
+
+        snewf = VGroup(snew, snewrect)
+
+        self.play(ReplacementTransform(sf, snewf), run_time = 2)
+
+        summation_notation = Tex(r" Einstein Summation Notation ").set_color([TEAL_B, MAROON_A])
+
+        self.wait(3)
+        self.play(FadeOut(VGroup(x0, x1, x2, x3)))
+        self.play(snewf.animate.move_to([-2.8, 2, 0]), metric.animate.move_to([2.8, 2, 0]))
+        self.play(snew[2].animate.set_color([TEAL_B]), snew[3].animate.set_color([MAROON_A]), run_time = 2)
+
+        sdef = MathTex(r" (\Delta s)^2 =  ", r" -", r"\Delta x^0 \Delta x^0 ", r"+", r"\Delta x^1 \Delta x^1 ", r"+", r"\Delta x^2 \Delta x^2", r"+", r"\Delta x^3 \Delta x^3").move_to([0, -2, 0])
+
+        sdef[1].set_color([TEAL_B])
+        sdef[2].set_color([MAROON_A])
+        sdef[4].set_color([MAROON_A])
+        sdef[6].set_color([MAROON_A])
+        sdef[8].set_color([MAROON_A])
+
+        eta11 = MathTex(r"\eta_{00}")
+        eta22 = MathTex(r"\eta_{11}")
+        eta33 = MathTex(r"\eta_{22}")
+        eta44 = MathTex(r"\eta_{33}")
+
+        etas = VGroup(eta11, eta22, eta33, eta44).move_to([0, 0, 0])
+
+        yellowsq = RoundedRectangle(height = 0.7, width = 0.7, fill_color = TEAL_B, fill_opacity = 0.3, corner_radius=0.1)
+        tealsq = Square(1, color = TEAL_B, fill_opacity = 0.3)
+
+        self.wait(3)
+
+        self.play(Write(sdef[0]), run_time = 1)
+
+        self.wait(4)
+
+        self.play(DrawBorderThenFill(etas[0].set_color([TEAL_B])), FadeIn(yellowsq.move_to([2.35, 2.9, 0])), run_time = 2)
+
+        self.wait()
+
+        self.play(Write(sdef[1]), Write(sdef[2]), Write(sdef[3]), run_time = 2)
+
+        self.wait(2)
+
+        self.play(Transform(etas[0], etas[1].set_color([TEAL_B])), yellowsq.animate.move_to([3.25, 2.35, 0]), run_time = 2)
+        self.wait()
+
+        self.play(Write(sdef[4]), Write(sdef[5]), run_time = 2)
+
+        self.wait()
+
+        self.play(Transform(etas[0], etas[2].set_color([TEAL_B])), yellowsq.animate.move_to([4, 1.75, 0]), run_time = 2)
+        self.wait()
+
+        self.play(Write(sdef[6]), Write(sdef[7]), run_time = 2)
+
+        self.wait()
+
+        self.play(Transform(etas[0], etas[3].set_color([TEAL_B])), yellowsq.animate.move_to([4.8, 1.15, 0]), run_time =2)
+        self.wait()
+
+        self.play(Write(sdef[8]), run_time = 2)
+
+        self.wait(3)
+
+        self.play(Unwrite(etas[0]), run_time = 1)
+
+        sdef2 = MathTex(r" (\Delta s)^2 =  ", r" -", r"\Delta ct \Delta ct ", r"+", r"\Delta x \Delta x ", r"+", r"\Delta y \Delta y", r"+", r"\Delta z \Delta z").move_to([0, -2, 0])
+
+        sdef2[1].set_color([TEAL_B])
+        sdef2[2].set_color([MAROON_B])
+        sdef2[4].set_color([MAROON_B])
+        sdef2[6].set_color([MAROON_B])
+        sdef2[8].set_color([MAROON_B])
+
+        sdef3 = MathTex(r" (\Delta s)^2 =  ", r" -", r"(c\Delta t)^2 ", r"+", r"(\Delta x)^2", r"+", r"(\Delta y)^2", r"+", r"(\Delta z)^2").move_to([0, -2, 0])
+
+        self.wait(2)
+
+        self.play(Transform(sdef, sdef2), run_time = 1)
+        self.wait(3)
+        self.play(Transform(sdef, sdef3), run_time = 1)
+
+        self.wait(4)
+
+        self.play(Unwrite(VGroup(sdef, metric, yellowsq)), run_time = 4)
+
+        self.wait()
+
+        self.play(snewf.animate.move_to([0, 1, 0]), run_time = 2)
+
+        self.wait(2)
+
+        notation = Tex(r" Einstein Summation Notation ").move_to([0, -1, 0]).set_color([TEAL_B, MAROON_A]).scale(1.5)
+
+        self.play(DrawBorderThenFill(notation), run_time = 1)
+
+        self.wait(4)
+
+        self.play(Unwrite(snewf), Unwrite(notation), run_time = 1)
+
+        self.wait()
+
+
+class ProperLength(ThreeDScene):
+    def construct(self): 
+
+        self.set_camera_orientation(
+            phi = 65*DEGREES,
+            theta = 32*DEGREES, 
+            distance = 5
+        )   
+        
+        axes = ThreeDAxes(
+            x_range = (-5, 5, 5), 
+            y_range = (-5, 5, 5), 
+            z_range = (0, 5, 5), 
+            x_length = 7, 
+            y_length = 7, 
+            z_length = 3.5,
+            axis_config={'tip_shape': StealthTip}
+        )
+        labels = axes.get_axis_labels(
+                    Tex(r"SPACE").scale(0.7), Tex(r"SPACE").scale(0.7), Tex(r"$t$")
+                )
+        
+        arr1 = Arrow3D(
+            start = np.array([-2.5, -2.5, 0]),
+            end = np.array([2, -1.5, 0.5]),
+            resolution = 5, 
+            color = WHITE, 
+        )
+        
+        arr2 = Arrow3D(
+            start = np.array([2.5, 2.5, 0]),
+            end = np.array([-2, 1.5, 0.5]),
+            resolution = 5, 
+            color = WHITE, 
+        )
+
+
+        arr3 = Arrow3D(
+            start = np.array([2, -1.5, 0.5]),
+            end = np.array([-1, 0.5, 1]),
+            resolution = 5, 
+            color = WHITE, 
+        )
+        
+        arr4 = Arrow3D(
+            start = np.array([-2, 1.5, 0.5]),
+            end = np.array([1, -0.5, 1]),
+            resolution = 5, 
+            color = WHITE, 
+        ) 
+
+        arr5 = Arrow3D(
+            start = np.array([-1, 0.5, 1]),
+            end = np.array([0, 0, 1.5]),
+            resolution = 5, 
+            color = WHITE, 
+        ).set_color_by_gradient(TEAL_B, PINK, YELLOW)
+
+        arr6 = Arrow3D(
+            start = np.array([1, -0.5, 1]),
+            end = np.array([0, 0, 1.5]),
+            resolution = 5, 
+            color = WHITE, 
+        ).set_color([YELLOW, PINK, TEAL_B])
+
+        self.begin_ambient_camera_rotation(rate = 0.1)
+
+        self.play(Write(VGroup(axes, labels)), run_time = 2)
+
+        self.wait()
+
+        self.play(Write(arr1), run_time = 1)
+        self.wait()
+
+        self.play(Write(arr3), run_time = 2)
+        self.wait()
+
+        self.play(Write(arr5), run_time = 3)
+
+        self.wait(3)
+
+        self.play(Write(arr2), run_time = 1)
+        self.wait()
+
+        self.play(Write(arr4), run_time = 2)
+        self.wait()
+
+        self.play(Write(arr6), run_time = 3)
+        self.wait(5) 
+
+
+        v1 = Arrow3D(
+            start = np.array([0, 0, 0]),
+            end = np.array([1, 1, 1]),
+            resolution = 5, 
+            color = WHITE, 
+        )
+
+        v2 = Arrow3D(
+            start = np.array([0, 0, 0]),
+            end = np.array([-1, -1, 3]),
+            resolution = 5, 
+            color = WHITE, 
+        )
+        
+        v12 = Arrow3D(
+            start = np.array([1, 1, 1]),
+            end = np.array([-1, -1, 3]),
+            resolution = 8, 
+            color = WHITE, 
+        ).set_color([TEAL_B, PINK, YELLOW])
+
+        self.play(ReplacementTransform(VGroup(arr1, arr2, arr3, arr4, arr5, arr6), VGroup(v1, v2)), run_time = 4)
+
+        self.wait()
+
+        self.play(Write(v12), run_time = 4)
+
+        metrictensor = Tex(r" Metric Tensor ").set_color([TEAL_B, MAROON_A]).scale(1.5).to_edge(DOWN)
+        self.add_fixed_in_frame_mobjects(metrictensor)
+        self.remove(metrictensor)
+
+        self.wait(3)
+
+        self.play(DrawBorderThenFill(metrictensor), run_time = 2)
+
+        self.wait(5)
+
+        self.play(Unwrite(VGroup(v1, v2, v12, metrictensor, axes, labels)), run_time = 5)
+
+        self.wait()
+
+        self.stop_ambient_camera_rotation()
+
+        
+        
+
+
+
+        
+
+
+        
+                    
+        
+
+
+        
+
+
+
+
+
+
+
+
+
         
 
     
