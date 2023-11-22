@@ -1,0 +1,4 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/devaldeliwala/manim/general_relativity/media/videos/worldlines/1080p60/partial_movie_files/MinkowskiReview/933085140_2901918658_729892282.mp4'
+file 'file:/Users/devaldeliwala/manim/general_relativity/media/videos/worldlines/1080p60/partial_movie_files/MinkowskiReview/1617113346_2002188885_657177848.mp4'
+file 'file:/Users/devaldeliwala/manim/general_relativity/media/videos/worldlines/1080p60/partial_movie_files/MinkowskiReview/3473680210_130769641_446400182.mp4'
