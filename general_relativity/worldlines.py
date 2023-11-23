@@ -53,7 +53,7 @@ class Surfaces(ThreeDScene):
         z2 = Surface(
            lambda u, v: np.array([u, v, u * 4*math.e**(-u**2 - v**2)]),
            resolution = (16, 32),
-           v_range = [-2, 2],
+           v_range= [-2, 2],
            u_range = [-2, 2],
            fill_opacity = 0.2
         ).set_opacity(0.6)
@@ -1380,6 +1380,47 @@ class watermark(Scene):
         t = Tex(r"youtube.com/@devdeliw").scale(0.75).to_edge(DL)
         self.add(t)
         self.wait(10)
+
+
+class Thumbnail(ThreeDScene):
+    def construct(self): 
+
+        title = Tex("Chapter 1").scale(2).move_to([0, 0.5, 0])
+        title2 = Tex("Special Relativity and Flat Spacetime").scale(1).move_to([0, -0.5, 0])
+        self.set_camera_orientation(
+            phi = 60*DEGREES,
+            theta = 80*DEGREES,
+            distance = 10
+        )
+
+        self.add_fixed_in_frame_mobjects(title, title2)
+        self.remove(title, title2)
+
+
+        z1 = Surface(
+           lambda u, v: np.array([u, v, v * 0.3*np.sin(u) - u *0.3*np.cos(v)]),
+           resolution = (16, 32),
+           v_range = [-2, 2],
+           u_range = [-2, 2],
+           fill_opacity = 0.1
+        ).set_opacity(0.2)
+
+        z1.set_color_by_gradient(TEAL, MAROON, YELLOW)
+
+        z2 = Surface(
+           lambda u, v: np.array([u, v, u * 4*math.e**(-u**2 - v**2)]),
+           resolution = (16, 32),
+           v_range = [-2, 2],
+           u_range = [-2, 2],
+           fill_opacity = 0.1
+        ).set_opacity(0.2)
+
+        z2.set_color_by_gradient(MAROON, YELLOW, TEAL)
+
+        VGroup(title, title2, z1, z2).scale(1.5)
+
+        self.add(title, title2, z1, z2)
+
 
 
 
